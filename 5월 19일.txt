@@ -1,0 +1,219 @@
+함수는 만들어야하고, 만들었으니까 사용할줄 알아야한다.
+만드는것은{] 가 있고, 사용하는것은 ; 이 있다.
+매개 변수 = 파라미터 
+
+{ int->반환형 add->함수명 (int num1, int num2)->매개변수  } ->함수선언
+{           				
+     int result = num1 + num2;      
+     return result; ->값의 반환
+
+}  -> 함수구현
+
+
+
+1. 함수의 구성요소 4가지에 대하여 설명하시오.
+int add(int num1, int num2)
+
+int re = num1 + num2;
+return re;
+
+1. 반환형
+2. 함수명
+3. 매개변수(파라미터)
+4. return값
+
+
+
+2. 함수 구현과, 함수 호출의 다른 점은 무엇인가요?
+함수 구현은 함수를 만드는것이고 함수 호출은 함수를 사용하는것 입니다.
+
+
+
+3. 함수 선언이란?
+프로그램의 다른 부분에서 프로그램에 정의되어 있는 함수를 사용하는 방법을 컴파일러에게 알려 주기 위하여 프로그램 안에서 함수의 사용법을 정의하는 작업. 
+예를 들어 함수 선언에는 함수의 이름과 함수에 전달되는 파라미터의 구조, 그리고 함수에서 결과로 반환되는 정보의 구조 따위가 명시된다.
+
+
+
+4. return 의 두가지 의미는?
+
+메소드를 호출한 영역으로 값을 반환
+메소드의 종료
+
+
+5. 국어, 영어 수학 점수변수 선언후 평균과 합계를 출력하고 수우미양가를 출력하는 프로그램을 작성하시오(외우세요).
+
+average 함수와 grade 함수는 작성해서 호출할것.
+
+	public static int grade(int avg) {
+		
+		if(avg>=90) {
+			System.out.println("평균은" + avg + "점 이고" + " 수 입니다.");
+		}else if(avg>=80) {
+			System.out.println("평균은" + avg + "점 이고" + " 우 입니다.");
+		}else if(avg>=70) {
+			System.out.println("평균은" + avg + "점 이고" + " 미 입니다.");
+		}else if(avg>=60) {
+			System.out.println("평균은" + avg + "점 이고" + " 양 입니다.");
+		}else {
+			System.out.println("평균은" + avg + "점 이고" + " 가 입니다.");
+		}
+		return avg;
+	}
+	
+	public static int average(int math, int kor, int eng) {
+		int average = (math + kor + eng) /3;
+		return average;
+	}
+
+	
+	public static void main(String[] args) {
+		grade(average(60,50,80));
+		
+	}
+
+
+6. 142 page 문제 1 번 2번 .
+
+문제 1. 정수 둘을 인자로 전달받아서 두 수의 사칙연산 결과를 출력하는 메소드와 이 메소드를 호출하는 main메소드를 정의해보자.
+단 나눗셈은 몫과 나머지를 각각 출력해야 한다.
+
+
+
+
+문제2. 정수 둘을 인자로 전달받아서, 두 수의 '차의 절대값'을 계산하여 출력하는 메소드와 이 메소드를 호출하는 main메소드를 정의해 보자.
+단 메소드 호출 시 전달되는 값의 순서에 상관없이 절대값이 계산되고 출력되어야 한다.
+
+
+
+
+
+
+
+7. 정수 하나를 입력 받아 아래와 같은 별찍기를 함수를 만드시오.
+
+3을 받으면(3층탑)
+
+*
+
+**
+
+***
+
+4을 입력 받으면(4층탑)
+
+*
+
+**
+
+***
+
+****
+
+	public static void star(int num) {
+			for(int i = 0; i<num; i++) {
+				for(int j = 0; j<=i; j++) {
+					System.out.print("*");
+				}
+			for(int k = 0; k<1; k++) {
+				System.out.println(" ");
+				
+			}
+				System.out.println();
+			}
+			
+	}
+	public static void main(String[] args) {
+		star(4);
+	}
+
+}
+
+
+
+8.정수 하나를 입력 받아 입력받은 수가 8이면 1부터8단까지 구구단 출력하는 함수를 작성하시오.
+
+	public static void gugudan(int num) {
+	 
+		for(int i = 1; i<10; i++) {
+			for(int j = 1; j<=num; j++) {
+				System.out.print(j + "x" + i + "=" + j*i + '\t');
+			}
+			System.out.println();
+		}
+		
+	}
+
+	public static void main(String[] args) {
+		gugudan(8);
+	}
+
+
+
+
+9.정수 하나를 입력받아 1 부터 입력받은 수까지 합을 구하는 함수를 작성하시오.
+
+		int result = 0;
+		for (int i = 1; i <= n; i++)
+			result += i;
+		return result;
+	}
+	
+	public static void main(String[] args) {
+		int n = 10;
+		System.out.println(sum(n));
+
+
+10.두수를 입력 받아 아래와 같은 함수를 만드시오.
+
+ 5 와 10을 입력 받을시
+
+ 5+6+7+8+9+10 의 합을 리턴
+
+만약 첫번째 입력값이 두번째 입력값보다 같거나 작을경우
+
+프로그램 에러입니다 출력 하도록 할것.
+
+
+	public static int sum(int n, int m) {
+		int result = 0;
+		
+		if(n>m) {
+		for(int i = m; i <= n; i++)
+			result += i ;
+		}
+		else if(n<=m) {
+			System.out.println("프로그램 에러입니다.");
+		}
+		return result;
+	}
+	
+	public static void main(String[] args) {
+		System.out.println(sum(10,5));
+
+	}
+
+11. 두수를 입력 받은후 두수의 최소 공배수를 리턴하는 함수를 만드시오. 두수가 같거나 하나라도 음수이면 프로그램 실행 안됨이라고 출력 할것.
+
+
+
+
+
+
+
+12.정수하나를 입력받아 해당 입력받은 수의  구구단 을 출력하시오. 8이면 8단 .. 7이면 7단 .. 
+
+	public static void gugudan(int num) {
+	 
+		for(int i = num; i<=num; i++) {
+			for(int j = 1; j<9; j++) {
+				System.out.println(i + "x" + j + "=" + j*i + '\t');
+			}
+			
+		}
+		
+	}
+
+	public static void main(String[] args) {
+		gugudan(7);
+	}

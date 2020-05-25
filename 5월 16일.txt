@@ -1,0 +1,138 @@
+1. 각각의 반복문의 무한 루프를 만드는 방법은?
+
+for( ; ; ) {
+
+}  
+
+while(true) {
+
+}
+
+do {
+
+}while(true)
+
+
+
+2.구구단을 짜는 프로그램을 작성하시오.(외울것)
+		for(int i = 2; i <10; i++) {
+			System.out.print("["+i+"단]\t");
+		}
+		System.out.println();
+		
+		for(int i = 1; i <10; i++) {
+			for(int j = 2; j < 10; j++) {
+				
+				System.out.print(j+"x"+i+"="+i*j+"\t");
+				
+		}	System.out.println();	
+	 }
+
+3.아래와 같이 프로그램을 짜시오.
+
+*****
+
+ ****
+
+  ***
+
+   **
+
+    *     
+		for(int i = 0; i<5; i++) {
+			for(int j = 0; j<i; j++) {
+				System.out.print(" ");
+			}
+		for(int k = 0; k<5-i; k++) {
+			System.out.print("*");
+		}
+		System.out.println();
+		}
+
+
+
+4. 1 부터 100 까지 더하는 프로그램을 작성하시오(외울것)
+
+1+2+3+4+5+......+100;
+		int sum = 0;
+		for(int num = 1; num<=100; num++ ) {
+			sum = sum + num;
+			if(num<100) {
+				continue;
+			}
+			System.out.println("1부터 100까지의 합은 " + sum + "입니다");
+			
+		}
+
+	}
+
+
+5. 129 Page 문제 2
+
+		int sum = 0;
+		int count ;
+		
+		for(int num = 1; ; num++ ) {
+			
+			if((num % 2) != 0) {
+				sum = sum + num;
+			}
+			
+			if(sum > 1000) { 
+				count = num;
+				break;
+			}
+		}
+		System.out.println(count+ "을 더할 때 "+ sum + "을 넘는다");
+		System.out.println("초과된 값 : " + sum);
+	}
+
+}
+
+6. 135 page 문제 1
+
+		for(int i = 1; i<10; i++) {
+			if((i % 2) != 0) {
+				continue;
+			}
+			for(int j = 1; j<10; j++) {
+				if(j <= i) {
+				System.out.println(i + "x" + j + " = " + j*i);
+				}
+			}
+			System.out.println();
+		}
+
+	}
+
+}
+
+
+7. 125 page - 문제 1
+		int sum = 1;
+		for(int num = 1; num<=10; num++ ) {
+			sum = sum * num;
+			if(num<10) {
+				continue;
+			}
+			System.out.println("1부터 10까지의 곱은 " + sum + "입니다");
+			
+		}
+
+	}
+
+
+8. 135 page 문제 2 (선생도 무슨말인지 모르겠음)
+
+		for(int a = 0; a<10; a++) {
+			for(int b = 0; b<10; b++) {
+				if(a+b == 9) {
+				System.out.print(" a"+ " = " + a + " b" + " = " + b);
+				}
+			}
+			System.out.println();
+		}
+
+	}
+
+}

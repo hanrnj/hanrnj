@@ -1,0 +1,235 @@
+생성자는 처음에 초기화를통해 값을 할당하는것이고 setter 함수는 값 수정을 위한 함수이다.
+
+AAA aaa = new AAA();
+new 는 new AAA 생성자 호출이라고 읽고 AAA.class를 메모리에 올린다라고 합니다.
+
+C:\PackageStudy> set classpath = . (현재위치) ..(이전위치=C) ; C:\PackageStudy\MyClass
+
+자바의 특징 - 상속,정보은닉,다형성,캡슐화
+
+public(언제든지 호출가능) > protected > default(같은 패키지내에서) > private(클래스 내부에서만 접근가능, 동일패키지,다른객체에서 접근 X)
+
+모든 데이터 메뉴는 private를 입력해서 정보은닉을 해야한다.
+
+캡슐화: 잘 짠 소스코드를 캡슐화라고한다.
+
+
+
+
+
+
+1. 절대 경로와 상대경로에 대하여 설명하시오.
+절대 경로는 
+
+
+2. set classpath=.;~~~~~~~~~~~  에서 classpath의 용도는?
+
+-자바를 실행할 때 사용할 클래스들의 위치를 가상머신에게 알려주는 역할을 한다.
+
+
+
+
+3. 아래를 코딩 하시오.
+
+GuguDan gu = new GuGuDan(7);
+
+gu.show();  // 7단 출력
+
+gu.setDan(8);
+
+gu.show()  // 8단 출력.
+
+
+public class GuguDan {
+
+	private int dan;
+	
+	public GuguDan(int dan) {
+		this.dan = dan;
+	}
+	public void show() {
+		for(int i = 1; i<10; i++) {
+			System.out.println(dan + "x" + i + "= " + dan * i);
+		}
+		System.out.println();
+	}
+	
+	public void setDan(int dan) {
+		this.dan = dan;
+	
+		
+	}
+}
+
+
+
+
+ GuguDan gu = new GuguDan(7);
+		  
+		  gu.show(); // 7단 출력
+		  
+		  gu.setDan(8);
+		  
+		  gu.show(); // 8단 출력.
+
+
+4.패키지란 무엇이며, 용도는?
+
+자바의 패키지(package)는 클래스(interface, enum..)의 묶음으로서 하나의 디렉토리(폴더)이다. 
+패키지의 이름과 같은 디렉토리 내에 클래스 파일들을 포함하며 하위 패키지도 포함하는 중첩된 구조도 가능하다. 
+
+용도는 서로 다른 경로의 클래스에서 같은이름으로 정의한 메소드를 사용하기위해서
+
+
+5.정보은닉이란?
+
+다른 객체에게 자신의 정보를 숨기고 자신의 연산만을 통하여 접근을 허용하는 것.
+
+
+
+6.아래의 프로그래밍을 하시오.
+
+StarPrint sp = new StarPrint(5);
+
+sp.floorShow(); //5층 피라밋
+
+sp.setFloor(3); 
+
+sp.floorShow(); //3층 피라밋
+
+  *
+
+ ***
+
+*****
+
+	private int floor;
+	
+	public StarPrint(int floor) {
+		this.floor = floor;
+	}
+	
+	public void floorShow() {
+		for(int i = 1; i<=floor; i++) {
+			for(int j = 0; j<floor-i; j++) {
+				System.out.print(" ");
+			}
+			for(int k = 1; k<2*i; k++) {
+					System.out.print("*");
+				}
+			System.out.println();
+			System.out.println();
+		}
+	}	
+	public void setFloor(int floor) {
+		this.floor = floor;
+	}
+
+
+		StarPrint sp = new StarPrint(5);
+
+		sp.floorShow(); //5층 피라밋
+
+		sp.setFloor(3); 
+
+		sp.floorShow(); //3층 피라밋
+
+
+
+
+7.객체지향 언어의 특징 4가지는(설명은 안해도 좋음)?
+
+상속 , 정보 은닉 , 캡슐화 , 다형성
+
+
+
+8. 아래의 접근 범위를 설명하시오.
+
+-클래스 내에서의 public 과 default.
+
+public은 다른 패키지, 다른 클래스, 어디서든 접근가능
+default는 같은 패키지 안과 동일 클래스안에서만 접근 가능.
+
+-멤버변수 와 함수의 private , default, protected(이거는 나중에)
+
+private는 동일 클래스 안에서만 접근이 가능하다.
+default는 같은 패키지 안과 동일 클래스안에서만 접근 가능
+
+9.캡슐화에 대하여 설명하시오.
+
+캡슐화: 잘 짠 소스코드를 캡슐화라고한다.
+
+
+
+10. 아래의 프로그램을 작성 하시오.
+
+
+
+		Triangle t1 = new Triangle(10, 20);
+
+		Triangle t2 = new Triangle(10, 20);
+
+		Triangle t3 = new Triangle(10, 10);
+
+		
+
+		t1.equalTriangle(t2);
+
+		t1.equalTriangle(t3);
+
+
+
+===출력====
+
+같은 삼각형 입니다.
+
+다른 삼각형 입니다.
+
+public class Triangle {
+	
+	private int base;
+	private int height;
+	
+	public Triangle(int base,int height) {
+		this.height = height;
+		this.base = base;
+	}
+	
+		public void equalTriangle (Triangle tri) {
+		
+		if((this.base == tri.base) && (this.height == tri.height)) {
+			System.out.println("같은 삼각형 입니다.");
+		}
+		else {
+			System.out.println("다른 삼각형 입니다.");
+		}
+	}
+	
+}
+
+
+public class TriangleTest {
+
+	public static void main(String[] args) {
+
+		Triangle t1 = new Triangle(10, 20);
+
+		Triangle t2 = new Triangle(10, 20);
+
+		Triangle t3 = new Triangle(10, 10);
+		
+		
+		t1.equalTriangle(t2);
+
+		t1.equalTriangle(t3);
+	}
+
+}
+
+
+11.디자인패턴 책의 저자의 이름은 누구이며, 소개된 패턴의 이름만 한번씩 읽어 보세요.
+
+에릭감마
+
+
+

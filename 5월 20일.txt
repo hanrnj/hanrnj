@@ -1,0 +1,215 @@
+Class의 기본 구성 = 변수+함수 
+
+     BankAccount           yoon       =           new           BankAccount();           ===> 인스턴스(객체) 객체생성 표현 = new
+클레스type (참조형)       변수명    대입                    생성자함수=클레스명함수 
+
+
+1. 뭐를 대입할까? 해당 BankAccount()의 주소를 나타내는(객채)의 첫번째( jvm이 관리하는 가짜)주소
+2. yoon은 몇 바이트의 메모리를 할당할까? 4바이트
+3. new은 뭐를하는 키워드인가? 클레스 파일을 컴파일(.Class화)하여 메모리에 할당하는 키워드(인스턴스화)
+4. 함수는 몇바이트? 함수는 각 4바이트로 메모리를 할당한다.
+
+참조형의 함수실행은 변수명 . 함수값
+
+
+클래스는 객체를 정의해놓은것.
+인스턴스란 : new 키워드를 통해 .class(컴파일) 해서 메모리에 올린것이 인스턴스이다.
+
+인스턴스 변수는 초기화를 시켜주지않아도 알아서 초기화시켜줌
+
+
+
+
+
+
+
+1. class 란 무엇과 무엇으로 구성되어 있는가?
+-변수와 메소드로 구성되어있습니다.
+
+2.아래의 용어를 설명하시오.
+
+인스턴스 변수
+-인스턴스 변수는 클레스 안에서 생성되는 변수를 말합니다.
+- 변수 앞에 static 키워드가 없습니다.(있다면 클래스 변수)
+특징은 new 키워드로 객체를 생성해서 메모리에 올라가면 사용이 가능해집니다.
+가르키는 참조변수가 없을 경우 가비지 컬렉터가 수거해서 삭제됩니다.
+프로그램이 종료되면 소멸됩니다.
+
+로컬변수
+-메서드 내에서 생성되는 변수를 말합니다.
+메서드에서 선언된 변수를 가르키며, 메서드가 실행되고 지역 변수가 선언 되면 그때에 생성된다.
+
+3. 클래스와 인스턴스의 차이는 무엇인가요(붕어빵틀과 붕어빵)?
+클래스는 객체를 정의해놓은 틀이고,
+인스턴스는 new 키워드를 통해 .class(컴파일)해서 메모리에 올린것이 인스턴스이다.
+
+4. BankAccount yoon = new BankAccount(); 의 메모리를 그리시오.
+
+
+
+5.아래 프로그램의 출력결과를 예측하고,메모리그림으로 설명하시오.
+
+
+
+public class BankAccount {
+
+	int account = 0;
+
+}
+
+
+
+public class BankAccountOO {
+
+
+
+	public static void check(BankAccount bank) {
+
+		
+
+		System.out.println(bank);
+
+		System.out.println(bank.account);
+
+		
+
+		bank.account = 90;
+
+		
+
+	}
+
+	public static void main(String[] args) {
+
+		BankAccount yoon = new BankAccount();
+
+		
+
+		yoon.account = 10; //옥상 올라감.
+
+		
+
+		System.out.println(yoon);
+
+		System.out.println(yoon.account);				
+
+		
+
+		check(yoon);
+
+		
+
+		System.out.println(yoon.account);		
+
+	}
+}
+
+
+6.1. 클래스 이름 : Triangle 
+
+     -인스턴스 변수 : width,height
+
+     - 삼각형의 넓이를 구하는 함수 : getArea
+
+     - 변수 셋팅 함수고,  Test 클래스에서
+
+ 테스트 하시오.
+
+public class Rectangle {
+	int width , height;
+	
+	void setwidth(int a) {
+		width = a;
+	}
+	void setHeight(int b) {
+		height = b;
+	}
+	
+	int getArea() {
+		int area = (width * height )/2;
+		return area;
+	}
+}
+
+
+	public static void main(String[] args) {
+		Rectangle area = new Rectangle();
+		
+		area.setHeight(6);
+		area.setwidth(4);
+		System.out.println(area.getArea());
+		
+		area.setHeight(10);
+		area.setwidth(20);
+		System.out.println(area.getArea());
+	}
+
+7. 클래스 이름 : Student 
+
+     -인스턴스 변수 : kor, eng, math
+
+     -setter 함수 작성 
+
+     - grade 함수 average 함수 작성
+
+     Test 클래스에서 평균과 수우미양가를 출력하는 프로그램을 작성하시오.
+
+public class Student {
+	int kor, eng, math;
+	
+	void setkor(int k) {
+		kor = k;
+	}
+	void seteng(int e) {
+		eng = e;
+	}
+	void setmath(int m) {
+		math = m;
+	}
+	
+	int average() {
+		int result = (kor + eng + math ) /3;
+		return result;
+	}
+	
+	char averageGrade() {
+		int result = (kor + eng + math ) /3;
+		if(result>=90) {
+			return '수';
+		}else if(result>=80) {
+			return '우';
+		}else if(result>=70) {
+			return '미';
+		}else if(result>=60) {
+			return '양';
+		}else {
+			return '가';
+		}	
+	}
+		
+		
+}
+
+
+public static void main(String[] args) {
+		Student test = new Student();
+		
+		test.setkor(50);
+		test.seteng(80);
+		test.setmath(80);
+		
+		System.out.println(test.average());
+		System.out.println(test.averageGrade());
+	}
+
+
+8.재귀함수란 무엇인가?
+- 자기자신을 호출하는 함수이다.
+
+단 사용 시 무한히 반복되는 재귀호출은 X
+ 
+ 문제의 크기는 점점 작아져야한다.
+ 꼭 재귀호출이 끝나는 종료 조건이 있어야한다.
+
+ 장점 : 코드가 간결하고 오류 수정이 용이
+ 단점 : 코드를 이해하기 어렵게 만들고 기억공간을 많이 요구
