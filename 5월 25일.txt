@@ -89,24 +89,21 @@ System.out.println(max.radius)
 Ãâ·Â : 8
 
 public class Circle {
-	int radius;
-
+	int radius ;
+	
 	public Circle(int radius) {
 		this.radius = radius;
 	}
 	
 	public static Circle maxCircle(Circle c1, Circle c2, Circle c3) {
-			Circle max = null;
-		if((c1.radius > c2.radius) && (c1.radius > c3.radius)){
-			System.out.println(c1.radius);
-		}else if ((c2.radius > c3.radius) && (c2.radius > c1.radius)) {
-			System.out.println(c2.radius);
-		}else if ((c3.radius > c1.radius) && (c3.radius > c2.radius)) {
-			System.out.println(c3.radius);
-		}
+		Circle max = c1;
+		if(max.radius < c2.radius ) 
+			max = c2;
+		if(c3.radius > max.radius )  
+			max = c3;
 		return max;
-	}
-
+		
+}
 }
 
 
