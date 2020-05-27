@@ -98,6 +98,15 @@ System.out.println(result)
 
 
 
+	public static void main(String[] args) {
+		String str = "ABCDEFG";
+		String result = str.substring(4,7);
+		System.out.println(result);
+
+	}
+
+
+
 
 11.아래를 String 함수등을 사용하여 프로그래밍 하시오.
 
@@ -162,4 +171,39 @@ public class Rectangle {
 		return width;
 	}
 }
+
+-----------------------------------------------------------------------------------------------------------
+
+
+public class Rectangle {
+	private int width;
+	private int height;
+	
+	public Rectangle(int width, int height) {
+		this.width = width;
+		this.height = height;
+	}
+	
+	public int getArea() {
+		return width * height;
+	}
+	
+	public static Rectangle compareRect(Rectangle r1, Rectangle r2) {
+		Rectangle rec = null;
+		if((r1.getArea()) > (r2.getArea())) {
+			rec = r1;
+		}else {
+			rec = r2;
+		} 
+		return rec;
+	}
+	
+	public int getHeight() {
+		return height;
+	}
+	public int getWidth() {
+		return width;
+	}
+}
+
 
