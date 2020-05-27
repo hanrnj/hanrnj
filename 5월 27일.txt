@@ -258,26 +258,23 @@ public class ALLarea {
 
 -숫자가 중복되지 않을것.
 
-public class ArrayTest {
-
 	public static void main(String[] args) {
+
 		int[] lotto = new int[6];
 		
 		for(int i = 0; i < lotto.length; i++) {
-			lotto[i] = (int) (Math.random()*45)+1; 
-		
-		for(int j = 0; j<i; j++) {
-			if(lotto[i] == lotto[j]) {
-				j--;
-				break;
+			lotto[i] = (int)(Math.random()*45)+1;
+			
+			for(int j = 0; j <= i-1; j++) {
+				while(lotto[i] == lotto[j]) {
+					lotto[i] = (int)(Math.random()*45)+1;
+				}
 			}
 		}
-		}	
 		for(int i = 0; i < lotto.length; i++) {
-		System.out.print(lotto[i] + " ");
+			System.out.print(lotto[i] + " ");
 		}
 	}
-}
 
 
 5.아래의 메모리 그림을 그리시오.
