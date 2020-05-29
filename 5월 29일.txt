@@ -1,0 +1,102 @@
+다형성 = 부모 =  자식이다.
+
+오버라이딩 = 상속을 받은 상태에서 함수 이름,인자,타입은 같은 상태에서 함수안에 들어가는 로직만 다르게 하는것!
+                 부모클래스의 함수에 접근해도 자식클래스의 함수가 실행된다.
+
+
+
+
+1.다형성이란?
+
+다형성은 상속과 깊은 관계가 있다.
+객체지향개념에서 다형성이란 '여러 가지 형태를 가질 수 있는 능력'을 의미하며 자바에서는 한 타입의 참조변수로 
+여러 타입의 객체를 참조할 수 있도록함으로써 다형성을 프로그램적으로 구현하였다.
+
+
+
+
+2. 아래의 메모리를 그리시오.
+
+class MobilePhone {
+
+    protected String number;
+
+    
+    public MobilePhone(String num) {
+
+        number = num;
+
+    }    
+
+    public void answer() {
+
+        System.out.println("Hi~ from " + number);
+
+    }
+
+}
+
+
+class SmartPhone extends MobilePhone { 
+
+    private String androidVer;
+
+    
+
+    public SmartPhone(String num, String ver) {
+
+        super(num);
+
+        androidVer = ver;
+
+    }    
+
+    public void playApp() {
+
+        System.out.println("App is running in " + androidVer);
+
+    }
+
+}
+
+=======================================
+
+	MobilePhone phone = new SmartPhone("010-555-777", "Nougat");
+
+    	phone.answer();    	
+
+    	SmartPhone s = (SmartPhone)phone;    	
+
+    	s.playApp();
+
+
+
+2.is-a 관계와 has-a 관계에 대하여 설명하시오.
+
+is-a 관계는 a는 b이다 처럼 정의할 수 있는 관계. ex )스마트폰은 모바일폰이다.
+
+has-a 관계는 ~ 은(는) ~ 을(를) 가지고 있다로 정의할 수 있는관계 ex) 학생은 책을 가지고있다(o)  책은 학생을 가지고있다.(x)
+
+
+
+3.메소드 오버로딩과 오버라이딩의 차이점은?
+
+오버라이딩 :  같은 메서드 이름, 같은 인자 목록에서 상위 클래스의 메서드를 재정의
+
+오버로딩 :  같은 메서드 이름, 다른 인자 목록에서 다수의 메서드를 중복 정의
+
+-------------------------------------------------------------------------------------------------
+4 책 323 page 14-1번
+
+
+
+
+
+
+5.instanceof 연산자에 대하여 설명하시오.
+
+instanceof 연산자는 명시적으로 형 변환의 가능성을 판단해주는 연산자 입니다.
+
+
+
+6.남는 시간은 어제 프로그래밍 모두 중요합니다.(시간내에 풀수 있도록 계속 연습 부탁드리겠습니다.)
