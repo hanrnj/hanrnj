@@ -33,6 +33,14 @@ int[][] arr = {
 
 };
 
+		for(int i = 0; i < arr.length; i++) {
+			for(int j = 0; j < arr[i].length; j++) {
+				System.out.print(arr[i][j]+ "\t");
+			}
+			System.out.println();
+		}
+
+
 
 ----------------------------------------------------------------------------------------------------
 
@@ -49,9 +57,48 @@ int[][] arr = {
 
 int[] arr = new int[10];
 
-
-
 int max = getMaxValue(arr) 
+
+
+public class Array {
+
+	public static int getMaxValue(int[] arr) {
+		int max = arr[0];
+		
+		for(int i = 0; i < arr.length; i++) {
+			if(max < arr[i]) {
+				max = arr[i];
+			}
+		}
+		return  max;	
+
+	} 
+}
+
+import java.util.Random;
+
+public class ArrayTest {
+
+	public static void main(String[] args) {
+		int[] arr = new int[10];
+		
+		Random random = new Random();
+		
+		for(int i = 0; i < arr.length; i++) {
+			arr[i] = (int)(Math.random()*100)+1;
+			System.out.println(arr[i]);
+		}
+		
+		int max = Array.getMaxValue(arr) ;
+		System.out.println(max);
+		
+
+	}
+
+}
+
+
+
 
 --------------------------------------------------------------------------------------------------------------
 
@@ -168,30 +215,42 @@ class TV {
 	public TV(int size) { this.size = size; }
 
 	protected int getSize() { return size; }
+
 }
 
-class ColorTV extends TV {
+
+class ColorTV extends TV{
 	
-	private int color;
+	private int inch ;
 	
-	public ColorTV(int size, int color) {
-		super(size);
-		this.color = color;
+	public ColorTV(int size , int inch) {
+	super(size);
+	this.inch = inch;
+	
 	}
+	
+	public int getInch() {
+		return inch;
+	}
+	
 
 	public void printProperty() {
-		System.out.println(getSize() + "인치" + color + "컬러");
-		super.getSize();
+		
+		System.out.println(getSize()+ "인치 " +getInch());
+		getSize();
 	}
 }
 
-public class TvTest {
+
+public class TVTV {
 
 	public static void main(String[] args) {
 		ColorTV myTV = new ColorTV(32, 1024);
 
 		myTV.printProperty();
+
 	}
+
 }
 
 
@@ -279,8 +338,16 @@ Point를 상속받아 색을 가진 점을 나타내는 ColorPoint 클래스를 작성하라. 다음 main
 RED 색의 (10,20)의 점 입니다.
 
 
+-------------------------------------------------------------------------------------------
+
+11.super의 용도 2가지에 대하여 설명하시오.
+-부모클래스 생성자 호출.
+-부모클래스 함수 호출.
 
 
+
+12.protected 에 대하여 설명하시오.
+-자식클래스까지 허용가능한 접근자
 
 
 
