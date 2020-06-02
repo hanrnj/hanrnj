@@ -67,7 +67,7 @@ public class Array {
 		
 		for(int i = 0; i < arr.length; i++) {
 			if(max < arr[i]) {
-				max = arr[i];
+			max = arr[i];
 			}
 		}
 		return  max;	
@@ -117,52 +117,46 @@ int[] arr = new int[10];
 int[] sortArr = getSortDESC(arr) 
 
 
-public class ArrSortMax {
-	public static int getMaxValue(int[] arr){
-		int max = arr[0];
+import java.util.Random;
+
+public class RandArray {
+	
+	public static void main(String[] args) {
+		Random rand = new Random();
+		int[] arr = new int[10];
+		for (int i = 0; i < arr.length; i++) {
+			arr[i] = rand.nextInt(100)+1;
+			System.out.print(arr[i] + "\t");
+		}
+		System.out.println();
 		
-		for(int i=0; i< arr.length ; i++){
-			
-			if(max < arr[i]){
-				max = arr[i];
-			}
-		}		
-		return max;		
+
+		int[] sortArr = getSortDESC(arr);
+		
+		for (int e : arr) {
+			System.out.print(e + "\t");
+		}
+
 	}
 	
-	public static int[]  getSortDESC(int[] arr){
-				
-		int temp=0;
-		for(int i = 0 ; i < arr.length ; i++) {
-			
-			for(int j = 0 ; j < arr.length -i -1 ; j++) {
-				
-				if(arr[j]<arr[j+1]) {
-					temp = arr[j];
-					arr[j] = arr[j+1];
-					arr[j+1] = temp;
+	
+	public static int[] getSortDESC(int[] arr) {
+		
+		int temp = 0;
+		
+		for (int i = 0; i < arr.length; i++) {
+			for (int j = i + 1; j < arr.length; j++) {
+				if (arr[i] < arr[j]) {
+					temp = arr[i];
+					arr[i] = arr[j];
+					arr[j] = temp;
 				}
 			}
 		}
-		return arr;		
+		return arr;
 	}
+
 }
-
-
-
-	public static void main(String[] args) {
-		int[] arr = new int[10];
-		//int[] sortArr = getSortDESC(arr) ;
-		
-		for(int i = 0; i < arr.length; i++) {
-			arr[i] = (int)(Math.random()*100)+1;
-		}	
-	 
-	int[] arr2 = ArrSortMax.getSortDESC(arr);
-	    
-	    for(int num : arr2)
-	    	System.out.println(num);
-
 	
 
 
@@ -188,50 +182,63 @@ Rectangle maxRec = getMaxRec(rec)
 
 s.o.p("최대사각형 넓이는" +maxRec.getArea())
 
-public class Rectangle {
-	private static int width;
-	private static int height;
-	
-	public Rectangle(int width, int height){
-		this.width = width;
-		this.height = height;		
-	}
-	
-	public static int getArea(){
-		return width * height;
-	}
-	
-	public static Rectangle getMaxRec(Rectangle[] arrRec){
-		Rectangle maxRec = arrRec[0];
-		
-		for(Rectangle rectangle : arrRec){
-			if(maxRec.getArea() < rectangle.getArea())
-				maxRec = rectangle;
-		}		
-		
-		return maxRec;		
-	}
-}
+import java.util.Scanner;
 
-
-
-public class RectangleTest {
+public class Test {
 
 	public static void main(String[] args) {
-		Rectangle[] arrRec = new Rectangle[3];
-	    
-		for(int i =0; i< arrRec.length; i++){
+		Rectangle[] rec = new Rectangle[3];
+
+		for (int i = 0; i < 3; i++) {
+			Scanner sc = new Scanner(System.in);
+			System.out.println((i+1) + "번 사각형 ");
 			
-			Scanner scanner = new Scanner(System.in);
-			System.out.print("넓이최대값"+ Rectangle.getArea());
-			arrRec[i] = new Rectangle(scanner.nextInt(), scanner.nextInt());	
+			System.out.println("가로 : ");
+			int width = sc.nextInt();
+			
+			System.out.println("세로 : ");
+			int height = sc.nextInt();
+			
+			rec[i] = new Rectangle(width, height);
 		}
-	    
-		Rectangle maxRec = Rectangle.getMaxRec(arrRec);	
-		System.out.println(maxRec.getArea());
+		
+		Rectangle maxRec = Rectangle.getMaxRec(rec);
+		System.out.println("최대사각형 넓이는 " + maxRec.getArea());
+		
+
 	}
+
+
 }
 
+
+public class Rectangle {
+	
+	int width, height;
+	
+	Rectangle (int width, int height) {
+		this.width = width;
+		this.height = height;
+	}
+	
+	int getArea () {
+		return width*height;
+	}
+	
+	static Rectangle getMaxRec (Rectangle rec[]) {
+		Rectangle max = rec[0];
+		
+		if (rec[1].getArea() > rec[0].getArea()) {
+			max = rec[1];
+		} 
+		if (rec[2].getArea() > rec[1].getArea()) {
+			max = rec[2];
+		}
+		return max;
+		
+	}
+
+}
 
 
 
@@ -249,71 +256,78 @@ public class RectangleTest {
 
 
 
-Rectangle[] rec = new Rectangle[3];
+import java.util.Random;
 
-........
+import java.util.Scanner;
 
-Rectangle[] recSorting = getSortingRec(rec) 
+public class Test {
 
-......
+	public static void main(String[] args) {
+
+		Rectangle[] rec = new Rectangle[3];
+		
+		int width, height;
+
+		for (int i = 0; i < rec.length; i++) {
+			Scanner sc = new Scanner(System.in);
+			
+			System.out.println("#" + (i+1) + "번 사각형#");
+			System.out.println("가로 : ");
+			width = sc.nextInt();
+			System.out.println("세로 : ");
+			height = sc.nextInt();
+			
+			rec[i] = new Rectangle(width, height);
+		}
+		
+		
+		Rectangle[] recSorting = Rectangle.getSortingRec(rec);
+		
+		for (int i = 0; i < recSorting.length; i++) {
+			System.out.print(recSorting[i].getArea() + "\t");
+		}
+
+
+	}
+
+}
+
+
 
 public class Rectangle {
-	private int width,height;
+
+	private int width, height;
 	
-	public Rectangle(int width, int height){
+	public Rectangle (int width, int height) {
 		this.width = width;
-		this.height = height;		
+		this.height = height;
 	}
 	
-	public int getArea(){
-		return width * height;
+	public int getArea() {
+		return width*height;
 	}
 	
-	public static Rectangle getMaxRec(Rectangle[] arrRec){
-		Rectangle maxRec = arrRec[0];
+	public static Rectangle[] getSortingRec (Rectangle[] rec) {
 		
-		for(Rectangle rectangle : arrRec){
-			if(maxRec.getArea() < rectangle.getArea())
-				maxRec = rectangle;
-		}		
+		Rectangle[] blank = new Rectangle[1];
 		
-		return maxRec;		
-	}
-	
-	public static Rectangle[] getSortRec(Rectangle[] arrRec){
-		
-		Rectangle temp=null;
-		
-		for(int i = 0 ; i < arrRec.length ; i++) {
-			
-			for(int j = 0 ; j < arrRec.length -i -1 ; j++) {
+		for (int i = 0; i < 3; i++) {
+			for (int j = i+1; j < 3; j++) {
 				
-				if(arrRec[j].getArea() < arrRec[j+1].getArea()) {
-					temp = arrRec[j];
-					arrRec[j] = arrRec[j+1];
-					arrRec[j+1] = temp;
+				if(rec[i].getArea() < rec[j].getArea()) {
+					blank[0] = rec[i];
+					rec[i] = rec[j];
+					rec[j] = blank[0];
 				}
 			}
 		}
 		
-		return arrRec;		
+		return rec;
+
 	}
-}
 
+	
 
-public class RectangleTest {
-
-	public static void main(String[] args) {
-		Rectangle[] rec = new Rectangle[3];
-
-		Rectangle[] recSorting = getSortingRec(rec) ;
-		
-		
-		Rectangle[] arrRec2 = Rectangle.getSortRec(arrRec);
-		
-		for(Rectangle rec : arrRec2 )
-			System.out.println(rec.getArea());
-	}
 }
 
 
