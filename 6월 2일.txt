@@ -1,0 +1,107 @@
+1. 다음을 프로그램 하시오.
+
+interface Printable { // MS가 정의하고 제공한 인터페이스
+
+   public void print(String doc);
+
+}
+
+ SPrinterDriver 와 LPrinterDriver를 만드시오
+
+======================
+
+
+
+public static void main(String[] args) {
+
+   String myDoc = "This is a report about...";
+
+   
+
+   // 삼성 프린터로 출력
+
+   Printable prn = new SPrinterDriver();
+
+   prn.print(myDoc);
+
+   System.out.println();
+
+
+
+   // LG 프린터로 출력
+
+   prn = new LPrinterDriver();
+
+   prn.print(myDoc);
+
+}
+
+interface Printable { 
+	   public void print(String doc);
+}
+
+class SPrinterDriver implements Printable{
+	@Override
+	public void print(String doc) {
+		System.out.println("samsung");
+		System.out.println(doc); 
+	}
+}
+
+class LPrinterDriver implements Printable{
+	@Override
+	public void print(String doc) {
+		System.out.println("LG");
+		System.out.println(doc); 
+	}
+}
+
+
+public class PrinterDriver {
+
+	public static void main(String[] args) {
+		String myDoc = "This is a report about...";
+		
+		Printable prn = new SPrinterDriver();
+		prn.print(myDoc);
+		System.out.println();
+		
+		prn = new LPrinterDriver();
+		prn.print(myDoc);
+	}
+}
+
+
+
+
+
+2. interface 문법중 default 에 대하여 설명하시오.
+
+ interface 문법에서 default 선언이 붙은 메소드는 이 자체로 완전한 메소드이기때문에
+ 이를 구현하는 클래스가 오버라이딩 하지 않아도 됩니다.
+
+3.abstract 클래스에 대하여 설명하시오.
+
+추상클래스는 실체클래스의 공통적인 부분(변수,메서드)를 추출해서 선언한 클래스
+추상클래스는 객체를 생성할 수 없다! 아직은 실체성이 없고 구체적이지 않기 때문에!
+추상클래스와 실체클래스는 어떤관계? 상속관계!
+
+
+4.추상클래스와 interface의 차이는 무엇인가요?
+
+인터페이스(interface)는 추상클래스보다 훨씬 극단적이고 제한적인 성격을 가집니다.
+인터페이스(interface)는 멤버필드와 추상메서드만 정의 할 수 있습니다.
+인터페이스(interface)를 상속받을려면 extends를 사용하면 안되고 implements 를 사용하여야 합니다.
+인터페이스(interface)는 다중상속이 가능합니다.
+인터페이스(interface)의 추상메서드는 일반클래스의 메서드 형식과 같지만 몸통을 가질 수 없습니다.
+인터페이스(interface)의 선언은 interface [이름]으로 합니다.
+
+추상클래스(abstract)는일반클래스보다 조금더 추상적은 개념의 것을 정의한다.
+추상클래스(abstract)의 추상 메서드와 그냥 메서드, 멤버필드, 생성자를 정의 할 수 있지만, 추상메서드는 내용을 정의 할 수 없다.
+추상클래스(abstract)의 추상메서드를 정의하면 추상클래스를 상속받은 클래스에서는 반드시 추상메서드를 Override 하여 정의하여야 한다.
+추상클래스(abstract)는 abstract class [클래스명] 으로 정의한다.
+추상클래스(abstract)의 추상메서드는 [접근제한자] abstract [return 자료형] [메서드이름]() 으로 정의한다.
+추상클래스(abstract)는 extends 로 상속받는다. 
+추상클래스(abstract)는 다중 상속이 안된다.
+
+5.조별학습-가즈아 ~~
