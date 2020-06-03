@@ -236,6 +236,16 @@ public class Rectangle {
 		}
 		return max;
 		
+			/*
+		 * for(Rectangle rrec : rec) { if(max.getArea() < rrec.getArea()) { max = rrec;
+		 * } }
+		 * 
+		 * for(int i = 0; i< rec.length; i++) { if(max.getArea() < rec[i].getArea()) {
+		 * max = rec[i]; } }
+		 */
+
+
+
 	}
 
 }
