@@ -128,57 +128,59 @@ import java.util.Scanner;
 			return num1 / num2;
 		}
 		
-		void execute() {
-			char yn;
-			int num1, num2, result = 0;
-			String op;
-			
-			do {
-				
-			Scanner sc = new Scanner(System.in);
-				
-			System.out.print("첫번째 숫자를 넣으세요:");
-			num1 = sc.nextInt();
-			
-			System.out.print("연산기호를 넣으세요:");
-			op = sc.next();
-			
-			System.out.print("두번째 숫자를 넣으세요:");
-			num2 = sc.nextInt();
-			try {
-			switch(op) {
-			
-			case "+":
-				result = add(num1, num2);
-				break;
-			case "-":
-				result = min(num1, num2);
-				break;
-			case "*":
-				result = dul(num1, num2);
-				break;
-			case "/":
-				result = div(num1, num2);
-				break;
+		public static void execute() {
+		Scanner scan = new Scanner(System.in);
+		int result = 0;
+		while(true) {	
+	
+		System.out.print("첫번째 숫자는");
+		int num = scan.nextInt();
+		
+		System.out.print("연산기호는");
+		String num1 = scan.next();
+		
+		System.out.print("두번째 숫자는");
+		int num2 = scan.nextInt();
+		
+		try {
+		switch(num1) {
+		
+		case "+" :
+			result = add(num, num2);
+			break;
+		case "-" :
+			result = min(num, num2);
+			break;
+		case "*" :
+			result = dul(num, num2);
+			break;
+		case "/" :
+			result = div(num, num2);
+			break;
 			
 			default:
-				break;
-			}
-			}
-			catch(ArithmeticException e) {
-				e.printStackTrace();
-			}
-			System.out.println(result);
-			
-			System.out.print("continue? Y or N:");
-			
-			yn = sc.next().charAt(0);
-			
-		} while(yn == 'y' || yn == 'Y');
-			
-			System.out.println("프로그램종료");
+			break;
+		}
+		}
+		catch(ArithmeticException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("continue ? yes or no");
+		char num4 = scan.next().charAt(0);
+		
+		if(num4 == 'y' | num4 == 'Y') {
+			execute();
+		
+		}else {
+			System.out.println("프로그램을 종료합니다.");
+		}
+		break;
+		
+		
 		}
 	}
+}
 
 		Calculator calculator = new Calculator();
 			calculator.execute();
