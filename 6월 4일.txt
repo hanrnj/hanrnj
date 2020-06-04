@@ -76,7 +76,7 @@ class Person {
 	
 	  @Override
 	  public boolean equals(Object obj) { 
-		  if((this.num == ((Person)obj).num) || (this.num1 == ((Person)obj).num1)) {
+		  if((this.num == ((Person)obj).num) && (this.num1 == ((Person)obj).num1)) {
 			  return true; 
 		  }else 
 			  return false; 
@@ -153,7 +153,7 @@ class PersonalInfo implements Cloneable{
 		PersonalInfo copy = (PersonalInfo)super.clone();
 		
 		copy.bz = (Business)bz.clone();
-		
+		copy.name = new String(name);
 		
 		return copy;	
 	}
