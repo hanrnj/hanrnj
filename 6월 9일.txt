@@ -1,0 +1,135 @@
+mark up 태그 바깥에 있는건 모두 출력
+
+블록 태그  개행o
+인라인태그 개행x
+
+<a href > </a> : hyper text referance 사이트 접속
+
+
+
+
+
+
+1.지네릭에서 <?> 와일드 카드가 나오게된 배경은?
+
+-모든 인스턴스들을 인자로 받기 위해서
+
+
+
+2.Box<Integer> 와 Box<String>이 상속이 안되는 이유는?
+
+- Box안에 담기는 타입형이 다르기 때문에
+
+
+3. 아래의 Error 를 설명하시오.
+
+lass Car extends Toy {...}    // 자동차 장난감
+class Robot extends Toy {...}    // 로봇 장난감
+
+class Box<T> {
+   private T ob;
+   public void set(T o) { ob = o; }
+   public T get() { return ob; }
+}
+
+. . . 
+
+public static void outBox(Box<? extends Toy> box) {
+   box.get();   // 꺼내는 것! OK!
+   box.set(new Toy());   // 넣는 것! ERROR!
+}
+
+Box타입 안에 들어갈 수 있는 타입은 Toy클래스 이거나 Toy를 상속받는 하위 클래스들이 올 수 있는데
+box.get();은 Toy 클래스가 와도, Toy의 자식 클래스가 들어가도 가능하지만,
+box.set(new Toy());는 Toy클래스가 왔을때는 가능하지만 Toy의 자식클래스가 타입으로 들어오게되면
+자식 = 부모 꼴이 되기때문에 다형성 측면에서 오류가 발생합니다.
+
+
+
+
+4.문제 22-2 537p 번을 푸시오.
+
+class Box<T> {
+	private T ob;
+	public void set(T o) {
+		ob = o;
+	}
+	public T get() {
+		return ob;
+	}
+}
+
+class BoundedWildcardGeneric {
+	
+	public static <T> boolean compBox(Box<? extends T> box, T con) {
+	
+		T bc = box.get();
+		return bc.equals(con);
+	}
+	
+}
+
+
+
+public class Test5 {
+
+	public static void main(String[] args) {
+		Box<Integer> box1 = new Box<>();
+		box1.set(24);
+		
+		Box<String> box2 = new Box<>();
+		box2.set("poly");
+		
+		if(BoundedWildcardGeneric.compBox(box1,25))
+			System.out.println("상자안에 25 저장");
+		
+		if(BoundedWildcardGeneric.compBox(box2,"Moly"))
+			System.out.println("상자안에 Moly 저장");
+		
+		System.out.println(box1.get());
+		System.out.println(box2.get());
+	}
+
+}
+
+
+5. Scanner를 이용하여 한 라인을 읽고, 공백으로 분리된 어절이 몇 개 들어 있는지 "그만"을 입력할 때까지 반복하는 프로그램을 작성하라.
+
+======출력======
+I love Java
+어절 갯수는 3
+자바는 객체 지향 언어 이다.
+어절 갯수는 5
+그만
+종료 합니다.
+import java.util.Scanner;
+
+class Game { 
+
+	public void excute() {
+		
+		Scanner scan = new Scanner(System.in);
+		
+		while(true) {
+			
+			System.out.println("문자를 입력하세요");
+			String s = scan.nextLine();
+			if(s.equals("그만")) {
+				System.out.println("종료합니다");
+				break;
+			}
+			
+			String[] words = s.split(" ");
+			System.out.println("어절 갯수는" + words.length);
+		}
+	}
+}
+public class Test6 {
+
+	public static void main(String[] args) {
+		Game test = new Game();
+		test.excute();
+			
+		
+	}
+}
