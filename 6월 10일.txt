@@ -142,7 +142,7 @@ public class Test6 {
 		Random rand = new Random();
 		
 		while(true) {
-			loto.add(new Loto(rand.nextInt(44)+1));
+			loto.add(rand.nextInt(44)+1);
 
 			if(loto.size()==6) {
 
