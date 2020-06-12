@@ -201,6 +201,7 @@ class는 중복이 가능하다.
 			height:100px;
 			width:600px;
 			line-height:100px; 
+			overflow: auto;
 		}
 
 	</style>
