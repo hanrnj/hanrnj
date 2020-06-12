@@ -173,6 +173,7 @@ class는 중복이 가능하다.
 			text-align: center;
 			height:100px;
 			width:600px;
+			line-height:100px; 
 		
 		}
 		#content{
@@ -199,6 +200,7 @@ class는 중복이 가능하다.
 			text-align: center;
 			height:100px;
 			width:600px;
+			line-height:100px; 
 		}
 
 	</style>
