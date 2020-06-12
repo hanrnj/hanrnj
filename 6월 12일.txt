@@ -156,3 +156,6 @@ class는 중복이 가능하다.
         </div>
     </div>
 
+
+jsp/servlet
+https://www.youtube.com/watch?v=Aw-lOlR0I28&list=PL6qV-iipFkkDt6MAIRUrl8Vkh6iKQJrqD
