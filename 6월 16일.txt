@@ -47,7 +47,7 @@ JSP는 MVC 패턴에서 View에 해당합니다.
   
 1.jsp 가 WAS 에서 돌아가는 원리를 설명하시오.
 
-톰캣과 같은 WAS가 java 파일을 컴파일해서 .Class로 만들고 메모리에 올려 Servlet 객체를 만들게 되고
+톰캣과 같은 WAS가 jsp파일을 java파일로 만들고 java파일을 컴파일하여 .Class로 만들어 메모리에 올려 Servlet 객체를 만들게 되고
 이 Servlet 객체는 doPost, doGet을 통해 요청에 응답합니다.
 
 
@@ -173,4 +173,123 @@ none은 아무것도 생성하지 않는 상태. 공간이 없음.
 
 
 5.13-1 구현 하시오.
+
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="EUC-KR">
+		<title>Insert title here</title>
+		
+		<style>
+			#all{
+				width:510px; height:515px;
+				border :1px solid #dddddd;
+			}
+		
+			#header {
+				width:500px; height:100px;
+				border :1px solid #dddddd;
+				text-align:center;
+			}
+	
+			#navigtiron{
+				width:500px; height:100px;
+				border :1px solid #dddddd;
+				text-align:center;
+			}
+			
+			#menu1{
+				width:50px; height:25px;
+				border :1px solid #dddddd;
+				text-align:center;
+				display:inline;
+			}
+			
+			#menu2{
+				width:50px; height:25px;
+				border :1px solid #dddddd;
+				text-align:center;
+				display:inline;
+			}
+			#menu3{
+				width:50px; height:25px;
+				border :1px solid #dddddd;
+				text-align:center;
+				display:inline;
+			}
+			#menu4{
+				width:50px; height:25px;
+				border :1px solid #dddddd;
+				text-align:center;
+				display:inline;
+			}
+			#menu5{
+				width:50px; height:25px;
+				border :1px solid #dddddd;
+				text-align:center;
+				display:inline;
+			}
+			
+			#wrap{
+				overflow:hidden;
+			}
+			
+			#content{
+				width:300px; height:200px;
+				border :1px solid #dddddd;
+				text-align:center;
+				float:left;
+			
+			}
+			
+			#banner{
+				width:200px; height:200px;
+				border :1px solid #dddddd;
+				text-align:center;
+				float:right;
+			}
+			
+			#footer{
+				width:500px; height:100px;
+				border :1px solid #dddddd;
+				text-align:center;
+			
+			} 
+			
+		</style>
+		
+	</head>
+	<body>
+		
+		<div id = "all">
+		
+		<div id = "header">
+			<p>HEADER<p>
+		</div>
+		
+		
+		<div id = "navigtiron">
+			<p>NAVIGATION<p>
+			
+			<div id = "menu1">menu1</div>
+			<div id = "menu2">menu2</div>
+			<div id = "menu3">menu3</div>
+			<div id = "menu4">menu4</div>
+			<div id = "menu5">menu5</div>
+		</div>
+		
+		
+		<div id = "wrap">
+		<div id = "content">CONTENT</div>
+		<div id = "banner">BANNER</div>
+		</div>
+		
+		<div id = "footer">
+			<p>FOOTER</p>
+		</div>
+		
+		</div>
+	</body>
+</html>
 
