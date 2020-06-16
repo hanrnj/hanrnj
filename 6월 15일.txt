@@ -13,7 +13,7 @@ Port : 프로그램 번호
 제우스가 우리나라에서 더 많이 사용되고있다는걸 알고 있지만, 상용이라서 아직 써보지는 못했습니다.
 그래서 톰켓을 이용해서 웹 프로그램을 해보았습니다.
 
-웹서버(톰켓,제우스) + WAS(Web Application Server) = 웹서버
+웹서버(톰켓,제우스) + WAS(Web Application System) = 웹서버
 
 Appache(웹서버) + tomcat(WAS) => 웹 서버
     html            jsp
