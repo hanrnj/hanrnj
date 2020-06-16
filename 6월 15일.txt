@@ -4,42 +4,42 @@ FTP : File Transper Protocol
 PCP : Port Control Protocol
 DHCP : Dynamic Host Configuration Protocol
 
-DNS : Domain Name Service ->ipÁÖ¼Ò¸¦ ¸ÊÇÎÇÑ ¹®ÀÚ¿­
-Port : ÇÁ·Î±×·¥ ¹øÈ£
-ÅèÄÏÀÌ °ü¸®ÇÏ´Â Æú´õ : kr/index
+DNS : Domain Name Service ->ipì£¼ì†Œë¥¼ ë§µí•‘í•œ ë¬¸ìžì—´
+Port : í”„ë¡œê·¸ëž¨ ë²ˆí˜¸
+í†°ì¼“ì´ ê´€ë¦¬í•˜ëŠ” í´ë” : kr/index
 
-À¥ÇÁ·Î±×·¡¹Ö ÇÁ·Î±×·¥ : PHP(º¸¾ÈÀÌ Á¶±Ý ¾àÇÔ) , ASP(MS¿¡¼­ ³ª¿Â°Í) , JSP(º¸¾ÈÀ» ½Å°æ¾²´ÂÂÊ)
+ì›¹í”„ë¡œê·¸ëž˜ë° í”„ë¡œê·¸ëž¨ : PHP(ë³´ì•ˆì´ ì¡°ê¸ˆ ì•½í•¨) , ASP(MSì—ì„œ ë‚˜ì˜¨ê²ƒ) , JSP(ë³´ì•ˆì„ ì‹ ê²½ì“°ëŠ”ìª½)
 
-Á¦¿ì½º°¡ ¿ì¸®³ª¶ó¿¡¼­ ´õ ¸¹ÀÌ »ç¿ëµÇ°íÀÖ´Ù´Â°É ¾Ë°í ÀÖÁö¸¸, »ó¿ëÀÌ¶ó¼­ ¾ÆÁ÷ ½áº¸Áö´Â ¸øÇß½À´Ï´Ù.
-±×·¡¼­ ÅèÄÏÀ» ÀÌ¿ëÇØ¼­ À¥ ÇÁ·Î±×·¥À» ÇØº¸¾Ò½À´Ï´Ù.
+ì œìš°ìŠ¤ê°€ ìš°ë¦¬ë‚˜ë¼ì—ì„œ ë” ë§Žì´ ì‚¬ìš©ë˜ê³ ìžˆë‹¤ëŠ”ê±¸ ì•Œê³  ìžˆì§€ë§Œ, ìƒìš©ì´ë¼ì„œ ì•„ì§ ì¨ë³´ì§€ëŠ” ëª»í–ˆìŠµë‹ˆë‹¤.
+ê·¸ëž˜ì„œ í†°ì¼“ì„ ì´ìš©í•´ì„œ ì›¹ í”„ë¡œê·¸ëž¨ì„ í•´ë³´ì•˜ìŠµë‹ˆë‹¤.
 
-À¥¼­¹ö(ÅèÄÏ,Á¦¿ì½º) + WAS(Web Application Server) = À¥¼­¹ö
+ì›¹ì„œë²„(í†°ì¼“,ì œìš°ìŠ¤) + WAS(Web Application Server) = ì›¹ì„œë²„
 
-Appache(À¥¼­¹ö) + tomcat(WAS) => À¥ ¼­¹ö
+Appache(ì›¹ì„œë²„) + tomcat(WAS) => ì›¹ ì„œë²„
+    html            jsp
+.Html ì •ì 
+.JSP ë™ì  , ì›¹ì•ˆì— ìžë°” ì–¸ì–´ë¥¼ ì´ìš©í•´ì„œ í”„ë¡œê·¸ëž˜ë° í•  ìˆ˜ ìžˆë‹¤.
 
-.Html Á¤Àû
-.JSP µ¿Àû , À¥¾È¿¡ ÀÚ¹Ù ¾ð¾î¸¦ ÀÌ¿ëÇØ¼­ ÇÁ·Î±×·¡¹Ö ÇÒ ¼ö ÀÖ´Ù.
+HTMLì„ ë™ì ìœ¼ë¡œ ë§Œë“¤ê¸°ìœ„í•´ PHP, ASP, JSPê°€ ë§Œë“¤ì–´ì¡Œê³ ,
+ë§Œë“¤ì–´ì§„ íŒŒì¼ì„ .Classë¡œ ë§Œë“œëŠ” ê²ƒì´ WASì´ë‹¤.
 
-HTMLÀ» µ¿ÀûÀ¸·Î ¸¸µé±âÀ§ÇØ PHP, ASP, JSP°¡ ¸¸µé¾îÁ³°í,
-¸¸µé¾îÁø ÆÄÀÏÀ» .Class·Î ¸¸µå´Â °ÍÀÌ WASÀÌ´Ù.
-
-pxÀº »ó´ë´ÜÀ§
+pxì€ ìƒëŒ€ë‹¨ìœ„
 
 
 
   
-1. ¾Æ·¡ÀÇ ThreadWithClass ¿Í ThreadWithRunnable À» ±¸ÇöÇÏ½Ã¿À.
+1. ì•„ëž˜ì˜ ThreadWithClass ì™€ ThreadWithRunnable ì„ êµ¬í˜„í•˜ì‹œì˜¤.
 
 public class Thread01 {
 
     public static void main(String[] args){
 
-        ThreadWithClass thread1 = new ThreadWithClass();       // Thread Å¬·¡½º¸¦ »ó¼Ó¹Þ´Â ¹æ¹ý
+        ThreadWithClass thread1 = new ThreadWithClass();       // Thread í´ëž˜ìŠ¤ë¥¼ ìƒì†ë°›ëŠ” ë°©ë²•
 
-        Thread thread2 = new Thread(new ThreadWithRunnable()); // Runnable ÀÎÅÍÆäÀÌ½º¸¦ ±¸ÇöÇÏ´Â ¹æ¹ý 
+        Thread thread2 = new Thread(new ThreadWithRunnable()); // Runnable ì¸í„°íŽ˜ì´ìŠ¤ë¥¼ êµ¬í˜„í•˜ëŠ” ë°©ë²• 
 
-        thread1.start(); // ½º·¹µåÀÇ ½ÇÇà
-        thread2.start(); // ½º·¹µåÀÇ ½ÇÇà
+        thread1.start(); // ìŠ¤ë ˆë“œì˜ ì‹¤í–‰
+        thread2.start(); // ìŠ¤ë ˆë“œì˜ ì‹¤í–‰
     }
 }
 
@@ -81,66 +81,66 @@ class ThreadWithRunnable implements Runnable{
 public class Thread01 {
 
 	public static void main(String[] args) {
-        ThreadWithClass thread1 = new ThreadWithClass();       // Thread Å¬·¡½º¸¦ »ó¼Ó¹Þ´Â ¹æ¹ý
+        ThreadWithClass thread1 = new ThreadWithClass();       // Thread í´ëž˜ìŠ¤ë¥¼ ìƒì†ë°›ëŠ” ë°©ë²•
 
-        Thread thread2 = new Thread(new ThreadWithRunnable()); // Runnable ÀÎÅÍÆäÀÌ½º¸¦ ±¸ÇöÇÏ´Â ¹æ¹ý 
+        Thread thread2 = new Thread(new ThreadWithRunnable()); // Runnable ì¸í„°íŽ˜ì´ìŠ¤ë¥¼ êµ¬í˜„í•˜ëŠ” ë°©ë²• 
 
-        thread1.start(); // ½º·¹µåÀÇ ½ÇÇà
-        thread2.start(); // ½º·¹µåÀÇ ½ÇÇà
+        thread1.start(); // ìŠ¤ë ˆë“œì˜ ì‹¤í–‰
+        thread2.start(); // ìŠ¤ë ˆë“œì˜ ì‹¤í–‰
 
 	}
 
 }
 
 
-2.À¥¼­¹ö¿Í WAS¿¡ ´ëÇÏ¿© ¼³¸íÇÏ½Ã¿À.
+2.ì›¹ì„œë²„ì™€ WASì— ëŒ€í•˜ì—¬ ì„¤ëª…í•˜ì‹œì˜¤.
 
-Web ServerÀÇ °³³ä
+Web Serverì˜ ê°œë…
 
-¼ÒÇÁÆ®¿þ¾î¿Í ÇÏµå¿þ¾î·Î ±¸ºÐµÈ´Ù.
+ì†Œí”„íŠ¸ì›¨ì–´ì™€ í•˜ë“œì›¨ì–´ë¡œ êµ¬ë¶„ëœë‹¤.
 
-1) ÇÏµå¿þ¾î
-Web ¼­¹ö°¡ ¼³Ä¡µÇ¾î ÀÖ´Â ÄÄÇ»ÅÍ
+1) í•˜ë“œì›¨ì–´
+Web ì„œë²„ê°€ ì„¤ì¹˜ë˜ì–´ ìžˆëŠ” ì»´í“¨í„°
 
-2) ¼ÒÇÁÆ®¿þ¾î
-À¥ ºê¶ó¿ìÀú Å¬¶óÀÌ¾ðÆ®·ÎºÎÅÍ HTTP ¿äÃ»À» ¹Þ¾Æ Á¤ÀûÀÎ ÄÁÅÙÃ÷(.html .jpeg .css µî)¸¦ Á¦°øÇÏ´Â ÄÄÇ»ÅÍ ÇÁ·Î±×·¥
+2) ì†Œí”„íŠ¸ì›¨ì–´
+ì›¹ ë¸Œë¼ìš°ì € í´ë¼ì´ì–¸íŠ¸ë¡œë¶€í„° HTTP ìš”ì²­ì„ ë°›ì•„ ì •ì ì¸ ì»¨í…ì¸ (.html .jpeg .css ë“±)ë¥¼ ì œê³µí•˜ëŠ” ì»´í“¨í„° í”„ë¡œê·¸ëž¨
 
-Web ServerÀÇ ±â´É
-HTTP ÇÁ·ÎÅäÄÝÀ» ±â¹ÝÀ¸·Î ÇÏ¿© Å¬¶óÀÌ¾ðÆ®(À¥ ºê¶ó¿ìÀú ¶Ç´Â À¥ Å©·Ñ·¯)ÀÇ ¿äÃ»À» ¼­ºñ½º ÇÏ´Â ±â´ÉÀ» ´ã´çÇÑ´Ù.
-¿äÃ»¿¡ µû¶ó ¾Æ·¡ÀÇ µÎ °¡Áö ±â´É Áß ÀûÀýÇÏ°Ô ¼±ÅÃÇÏ¿© ¼öÇàÇÑ´Ù.
+Web Serverì˜ ê¸°ëŠ¥
+HTTP í”„ë¡œí† ì½œì„ ê¸°ë°˜ìœ¼ë¡œ í•˜ì—¬ í´ë¼ì´ì–¸íŠ¸(ì›¹ ë¸Œë¼ìš°ì € ë˜ëŠ” ì›¹ í¬ë¡¤ëŸ¬)ì˜ ìš”ì²­ì„ ì„œë¹„ìŠ¤ í•˜ëŠ” ê¸°ëŠ¥ì„ ë‹´ë‹¹í•œë‹¤.
+ìš”ì²­ì— ë”°ë¼ ì•„ëž˜ì˜ ë‘ ê°€ì§€ ê¸°ëŠ¥ ì¤‘ ì ì ˆí•˜ê²Œ ì„ íƒí•˜ì—¬ ìˆ˜í–‰í•œë‹¤.
 
-±â´É 1)
-Á¤ÀûÀÎ ÄÁÅÙÃ÷ Á¦°ø
-WAS¸¦ °ÅÄ¡Áö ¾Ê°í ¹Ù·Î ÀÚ¿øÀ» Á¦°øÇÑ´Ù.
+ê¸°ëŠ¥ 1)
+ì •ì ì¸ ì»¨í…ì¸  ì œê³µ
+WASë¥¼ ê±°ì¹˜ì§€ ì•Šê³  ë°”ë¡œ ìžì›ì„ ì œê³µí•œë‹¤.
 
-±â´É 2)
-µ¿ÀûÀÎ ÄÁÅÙÃ÷ Á¦°øÀ» À§ÇÑ ¿äÃ» Àü´Þ
-Å¬¶óÀÌ¾ðÆ®ÀÇ ¿äÃ»(Request)À» WAS¿¡ º¸³»°í, WAS°¡ Ã³¸®ÇÑ °á°ú¸¦ Å¬¶óÀÌ¾ðÆ®¿¡°Ô Àü´Þ(ÀÀ´ä, Response)ÇÑ´Ù.
-Å¬¶óÀÌ¾ðÆ®´Â ÀÏ¹ÝÀûÀ¸·Î À¥ ºê¶ó¿ìÀú¸¦ ÀÇ¹ÌÇÑ´Ù.
+ê¸°ëŠ¥ 2)
+ë™ì ì¸ ì»¨í…ì¸  ì œê³µì„ ìœ„í•œ ìš”ì²­ ì „ë‹¬
+í´ë¼ì´ì–¸íŠ¸ì˜ ìš”ì²­(Request)ì„ WASì— ë³´ë‚´ê³ , WASê°€ ì²˜ë¦¬í•œ ê²°ê³¼ë¥¼ í´ë¼ì´ì–¸íŠ¸ì—ê²Œ ì „ë‹¬(ì‘ë‹µ, Response)í•œë‹¤.
+í´ë¼ì´ì–¸íŠ¸ëŠ” ì¼ë°˜ì ìœ¼ë¡œ ì›¹ ë¸Œë¼ìš°ì €ë¥¼ ì˜ë¯¸í•œë‹¤.
 
 
-WASÀÇ °³³ä
+WASì˜ ê°œë…
 
-DB Á¶È¸³ª ´Ù¾çÇÑ ·ÎÁ÷ Ã³¸®¸¦ ¿ä±¸ÇÏ´Â µ¿ÀûÀÎ ÄÁÅÙÃ÷¸¦ Á¦°øÇÏ±â À§ÇØ ¸¸µé¾îÁø Application Server
-HTTP¸¦ ÅëÇØ ÄÄÇ»ÅÍ³ª ÀåÄ¡¿¡ ¾ÖÇÃ¸®ÄÉÀÌ¼ÇÀ» ¼öÇàÇØÁÖ´Â ¹Ìµé¿þ¾î(¼ÒÇÁÆ®¿þ¾î ¿£Áø)ÀÌ´Ù.
-¡°À¥ ÄÁÅ×ÀÌ³Ê(Web Container)¡± È¤Àº ¡°¼­ºí¸´ ÄÁÅ×ÀÌ³Ê(Servlet Container)¡±¶ó°íµµ ºÒ¸°´Ù.
+DB ì¡°íšŒë‚˜ ë‹¤ì–‘í•œ ë¡œì§ ì²˜ë¦¬ë¥¼ ìš”êµ¬í•˜ëŠ” ë™ì ì¸ ì»¨í…ì¸ ë¥¼ ì œê³µí•˜ê¸° ìœ„í•´ ë§Œë“¤ì–´ì§„ Application Server
+HTTPë¥¼ í†µí•´ ì»´í“¨í„°ë‚˜ ìž¥ì¹˜ì— ì• í”Œë¦¬ì¼€ì´ì…˜ì„ ìˆ˜í–‰í•´ì£¼ëŠ” ë¯¸ë“¤ì›¨ì–´(ì†Œí”„íŠ¸ì›¨ì–´ ì—”ì§„)ì´ë‹¤.
+â€œì›¹ ì»¨í…Œì´ë„ˆ(Web Container)â€ í˜¹ì€ â€œì„œë¸”ë¦¿ ì»¨í…Œì´ë„ˆ(Servlet Container)â€ë¼ê³ ë„ ë¶ˆë¦°ë‹¤.
 
-Container¶õ JSP, ServletÀ» ½ÇÇà½ÃÅ³ ¼ö ÀÖ´Â ¼ÒÇÁÆ®¿þ¾î¸¦ ¸»ÇÑ´Ù.
-Áï, WAS´Â JSP, Servlet ±¸µ¿ È¯°æÀ» Á¦°øÇÑ´Ù.
+Containerëž€ JSP, Servletì„ ì‹¤í–‰ì‹œí‚¬ ìˆ˜ ìžˆëŠ” ì†Œí”„íŠ¸ì›¨ì–´ë¥¼ ë§í•œë‹¤.
+ì¦‰, WASëŠ” JSP, Servlet êµ¬ë™ í™˜ê²½ì„ ì œê³µí•œë‹¤.
 
-WASÀÇ ¿ªÇÒ
+WASì˜ ì—­í• 
 
 WAS = Web Server + Web Container
-Web Server ±â´ÉµéÀ» ±¸Á¶ÀûÀ¸·Î ºÐ¸®ÇÏ¿© Ã³¸®ÇÏ°íÀÚÇÏ´Â ¸ñÀûÀ¸·Î Á¦½ÃµÇ¾ú´Ù.
-ºÐ»ê Æ®·£Àè¼Ç, º¸¾È, ¸Þ½ÃÂ¡, ¾²·¹µå Ã³¸® µîÀÇ ±â´ÉÀ» Ã³¸®ÇÏ´Â ºÐ»ê È¯°æ¿¡¼­ »ç¿ëµÈ´Ù.
-ÁÖ·Î DB ¼­¹ö¿Í °°ÀÌ ¼öÇàµÈ´Ù.
-ÇöÀç´Â WAS°¡ °¡Áö°í ÀÖ´Â Web Serverµµ Á¤ÀûÀÎ ÄÁÅÙÃ÷¸¦ Ã³¸®ÇÏ´Â µ¥ ÀÖ¾î¼­ ¼º´É»ó Å« Â÷ÀÌ°¡ ¾ø´Ù.
+Web Server ê¸°ëŠ¥ë“¤ì„ êµ¬ì¡°ì ìœ¼ë¡œ ë¶„ë¦¬í•˜ì—¬ ì²˜ë¦¬í•˜ê³ ìží•˜ëŠ” ëª©ì ìœ¼ë¡œ ì œì‹œë˜ì—ˆë‹¤.
+ë¶„ì‚° íŠ¸ëžœìž­ì…˜, ë³´ì•ˆ, ë©”ì‹œì§•, ì“°ë ˆë“œ ì²˜ë¦¬ ë“±ì˜ ê¸°ëŠ¥ì„ ì²˜ë¦¬í•˜ëŠ” ë¶„ì‚° í™˜ê²½ì—ì„œ ì‚¬ìš©ëœë‹¤.
+ì£¼ë¡œ DB ì„œë²„ì™€ ê°™ì´ ìˆ˜í–‰ëœë‹¤.
+í˜„ìž¬ëŠ” WASê°€ ê°€ì§€ê³  ìžˆëŠ” Web Serverë„ ì •ì ì¸ ì»¨í…ì¸ ë¥¼ ì²˜ë¦¬í•˜ëŠ” ë° ìžˆì–´ì„œ ì„±ëŠ¥ìƒ í° ì°¨ì´ê°€ ì—†ë‹¤.
 
 
-3. .jsp ¿Í .html ÀÇ Â÷ÀÌ´Â?
+3. .jsp ì™€ .html ì˜ ì°¨ì´ëŠ”?
 
-HTML´Â ¹Ù·Î ºê¶ó¿ìÀú¿¡ º¸¿©Áö´Â ¹Ý¸é JSP´Â ¼­¹ö¿¡¼­ compileÀ» ÇÑ ÈÄ¿¡ HTMLÇü½Ä
-.Html Á¤Àû
-.JSP µ¿Àû , À¥¾È¿¡ ÀÚ¹Ù ¾ð¾î¸¦ ÀÌ¿ëÇØ¼­ ÇÁ·Î±×·¡¹Ö ÇÒ ¼ö ÀÖ´Ù.
+HTMLëŠ” ë°”ë¡œ ë¸Œë¼ìš°ì €ì— ë³´ì—¬ì§€ëŠ” ë°˜ë©´ JSPëŠ” ì„œë²„ì—ì„œ compileì„ í•œ í›„ì— HTMLí˜•ì‹
+.Html ì •ì 
+.JSP ë™ì  , ì›¹ì•ˆì— ìžë°” ì–¸ì–´ë¥¼ ì´ìš©í•´ì„œ í”„ë¡œê·¸ëž˜ë° í•  ìˆ˜ ìžˆë‹¤.
 
-4.html 8Àå - Á¶º° ÇÐ½À
+4.html 8ìž¥ - ì¡°ë³„ í•™ìŠµ
