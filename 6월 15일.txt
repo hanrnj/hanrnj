@@ -6,7 +6,7 @@ DHCP : Dynamic Host Configuration Protocol
 
 DNS : Domain Name Service ->ip주소를 맵핑한 문자열
 Port : 프로그램 번호
-톰켓이 관리하는 폴더 : kr/index
+톰켓이 관리하는 폴더 : kr/index == contxet name
 
 웹프로그래밍 프로그램 : PHP(보안이 조금 약함) , ASP(MS에서 나온것) , JSP(보안을 신경쓰는쪽)
 
