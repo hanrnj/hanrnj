@@ -1,178 +1,178 @@
-jsp ÆÄÀÏÀ» .class·Î ¸¸µé¾îÁÖ´Â°ÍÀº ÄÄÆÄÀÏ·¯°¡ ¾Æ´Ï¶ó WAS(ÅèÄÏ, Á¦¿ì½º)ÀÌ´Ù.
+jsp íŒŒì¼ì„ .classë¡œ ë§Œë“¤ì–´ì£¼ëŠ”ê²ƒì€ ì»´íŒŒì¼ëŸ¬ê°€ ì•„ë‹ˆë¼ WAS(í†°ì¼“, ì œìš°ìŠ¤)ì´ë‹¤.
 
 localhost ip: 127.0.0.1
 
-Å¬¶óÀÌ¾ðÆ®°¡ URL ÁÖ¼Ò¸¦ Ä¡°í µé¾î¿À¸é ÅèÄÏÀÌ °ü·ÃµÈ ÆÄÀÏÀ» .class·Î 
-°ü¸®ÇÏ°í ÀÖ´Ù°¡ servletÀÌ html ÆÄÀÏ·Î º¯È¯ÇÏ¿© À¥¿¡ Àü´ÞÇÑ´Ù.
+í´ë¼ì´ì–¸íŠ¸ê°€ URL ì£¼ì†Œë¥¼ ì¹˜ê³  ë“¤ì–´ì˜¤ë©´ í†°ì¼“ì´ ê´€ë ¨ëœ íŒŒì¼ì„ .classë¡œ 
+ê´€ë¦¬í•˜ê³  ìžˆë‹¤ê°€ servletì´ html íŒŒì¼ë¡œ ë³€í™˜í•˜ì—¬ ì›¹ì— ì „ë‹¬í•œë‹¤.
 
-Servlet¿ø¸®
+Servletì›ë¦¬
 
-url¿¡ Á÷Á¢ °æ·Î¸¦ ÀÔ·ÂÇØ¼­ µé¾î¿À´Â °æ¿ì´Â dogetÀ¸·Î Ãâ·Â,
-post¹æ½ÄÀ¸·Î µé¾î¿À¸é dopost·Î Ãâ·Â
-request, response¸¦ ³Ñ°ÜÁØ´Ù.
+urlì— ì§ì ‘ ê²½ë¡œë¥¼ ìž…ë ¥í•´ì„œ ë“¤ì–´ì˜¤ëŠ” ê²½ìš°ëŠ” dogetìœ¼ë¡œ ì¶œë ¥,
+postë°©ì‹ìœ¼ë¡œ ë“¤ì–´ì˜¤ë©´ dopostë¡œ ì¶œë ¥
+request, responseë¥¼ ë„˜ê²¨ì¤€ë‹¤.
 
-ServletÀº Å¬¶óÀÌ¾ðÆ®ÀÇ ¿äÃ»À» ¹Þ¾Æ¼­ ºñÁî´Ï½º ·ÎÁ÷ Ã³¸®, DB¿¡ Á¢±Ù µîÀÇ ¿äÃ»À» Ã³¸®ÇÑ ÈÄ, ´Ù½Ã »ç¿ëÀÚ¿¡°Ô ÀÀ´äÇÏ´Â °ÍÀÌ ÁÖ ¿ªÇÒÀÔ´Ï´Ù.
-
-
-ÅèÄ¹°ú °°Àº WAS °¡ java ÆÄÀÏÀ» ÄÄÆÄÀÏÇØ¼­ Class·Î ¸¸µé°í ¸Þ¸ð¸®¿¡ ¿Ã·Á Servlet °´Ã¼¸¦ ¸¸µé°Ô µÇ°í
-ÀÌ Servlet °´Ã¼´Â doPost, doGetÀ» ÅëÇØ ¿äÃ»¿¡ ÀÀ´äÇÕ´Ï´Ù.
-
-http ÇÁ·ÎÅäÄÝÀ» Ä¸½¶È­½ÃÅ²°Í = servlet
-¸ÊÇÎ, doget, dopost, request, response
-
-get ¹æ½Ä : URL°ªÀ¸·Î Á¤º¸°¡ Àü¼ÛµÇ¾î º¸¾È¿¡ ¾àÇÔ.
-post ¹æ½Ä : header¸¦ ÀÌ¿ëÇØ Á¤º¸°¡ Àü´ÞµÇ¾î º¸¾È¿¡ °­ÇÔ.
-
-margin / padding Â÷ÀÌÁ¡
-
-margin: 0 auto; = °¡¿îµ¥Á¤·Ä
-
-overflow : ÀÚ½ÄÀÌ ³ÑÄ¥¶§ ºÎ¸ð¿¡¼­ ÄÁÆ®·Ñ ÇÏ°Ú´Ù.
+Servletì€ í´ë¼ì´ì–¸íŠ¸ì˜ ìš”ì²­ì„ ë°›ì•„ì„œ ë¹„ì¦ˆë‹ˆìŠ¤ ë¡œì§ ì²˜ë¦¬, DBì— ì ‘ê·¼ ë“±ì˜ ìš”ì²­ì„ ì²˜ë¦¬í•œ í›„, ë‹¤ì‹œ ì‚¬ìš©ìžì—ê²Œ ì‘ë‹µí•˜ëŠ” ê²ƒì´ ì£¼ ì—­í• ìž…ë‹ˆë‹¤.
 
 
+í†°ìº£ê³¼ ê°™ì€ WAS ê°€ java íŒŒì¼ì„ ì»´íŒŒì¼í•´ì„œ Classë¡œ ë§Œë“¤ê³  ë©”ëª¨ë¦¬ì— ì˜¬ë ¤ Servlet ê°ì²´ë¥¼ ë§Œë“¤ê²Œ ë˜ê³ 
+ì´ Servlet ê°ì²´ëŠ” doPost, doGetì„ í†µí•´ ìš”ì²­ì— ì‘ë‹µí•©ë‹ˆë‹¤.
 
-JSP ÆÄÀÏ¿¡¼­ 60ÁÙÀÎ ÄÚµå°¡ ServletÀ¸·Î º¯È¯µÇ´Ï 200ÁÙÀÌ µÇ¾ú½À´Ï´Ù.
+http í”„ë¡œí† ì½œì„ ìº¡ìŠí™”ì‹œí‚¨ê²ƒ = servlet
+ë§µí•‘, doget, dopost, request, response
 
-Áï, ServletÀ¸·Î ÀÀ´ä ÆäÀÌÁö¸¦ º¸¿©ÁÖ´Â °ÍÀº ºñÈ¿À²ÀûÀÔ´Ï´Ù.
+get ë°©ì‹ : URLê°’ìœ¼ë¡œ ì •ë³´ê°€ ì „ì†¡ë˜ì–´ ë³´ì•ˆì— ì•½í•¨.
+post ë°©ì‹ : headerë¥¼ ì´ìš©í•´ ì •ë³´ê°€ ì „ë‹¬ë˜ì–´ ë³´ì•ˆì— ê°•í•¨.
 
-±×·¡¼­ HTML ¹®¼­¿¡ Java ÄÚµå¸¦ ³ÖÀ» ¼ö ÀÖ´Â JSP°¡ ÇÊ¿äÇÑ °ÍÀÔ´Ï´Ù.
+margin / padding ì°¨ì´ì 
 
-JSP´Â MVC ÆÐÅÏ¿¡¼­ View¿¡ ÇØ´çÇÕ´Ï´Ù.
+margin: 0 auto; = ê°€ìš´ë°ì •ë ¬
 
-Á¤¸®ÇÏ¸é JSP/ServletÀ» »ç¿ëÇÑ´Ù´Â °ÍÀº "¸ðµç ¿äÃ»Àº ServletÀ¸·Î ¹Þ°í Å¬¶óÀÌ¾ðÆ®¿¡°Ô º¸¿© ÁÙ ÆäÀÌÁö´Â JSP·Î ÀÛ¼ºÇÑ´Ù"°í ÇÒ ¼ö ÀÖ½À´Ï´Ù.
+overflow : ìžì‹ì´ ë„˜ì¹ ë•Œ ë¶€ëª¨ì—ì„œ ì»¨íŠ¸ë¡¤ í•˜ê² ë‹¤.
+
+
+
+JSP íŒŒì¼ì—ì„œ 60ì¤„ì¸ ì½”ë“œê°€ Servletìœ¼ë¡œ ë³€í™˜ë˜ë‹ˆ 200ì¤„ì´ ë˜ì—ˆìŠµë‹ˆë‹¤.
+
+ì¦‰, Servletìœ¼ë¡œ ì‘ë‹µ íŽ˜ì´ì§€ë¥¼ ë³´ì—¬ì£¼ëŠ” ê²ƒì€ ë¹„íš¨ìœ¨ì ìž…ë‹ˆë‹¤.
+
+ê·¸ëž˜ì„œ HTML ë¬¸ì„œì— Java ì½”ë“œë¥¼ ë„£ì„ ìˆ˜ ìžˆëŠ” JSPê°€ í•„ìš”í•œ ê²ƒìž…ë‹ˆë‹¤.
+
+JSPëŠ” MVC íŒ¨í„´ì—ì„œ Viewì— í•´ë‹¹í•©ë‹ˆë‹¤.
+
+ì •ë¦¬í•˜ë©´ JSP/Servletì„ ì‚¬ìš©í•œë‹¤ëŠ” ê²ƒì€ "ëª¨ë“  ìš”ì²­ì€ Servletìœ¼ë¡œ ë°›ê³  í´ë¼ì´ì–¸íŠ¸ì—ê²Œ ë³´ì—¬ ì¤„ íŽ˜ì´ì§€ëŠ” JSPë¡œ ìž‘ì„±í•œë‹¤"ê³  í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤.
 
 
 
 
   
-1.jsp °¡ WAS ¿¡¼­ µ¹¾Æ°¡´Â ¿ø¸®¸¦ ¼³¸íÇÏ½Ã¿À.
+1.jsp ê°€ WAS ì—ì„œ ëŒì•„ê°€ëŠ” ì›ë¦¬ë¥¼ ì„¤ëª…í•˜ì‹œì˜¤.
 
-ÅèÄ¹°ú °°Àº WAS°¡ jspÆÄÀÏÀ» javaÆÄÀÏ·Î ¸¸µé°í javaÆÄÀÏÀ» ÄÄÆÄÀÏÇÏ¿© .Class·Î ¸¸µé¾î ¸Þ¸ð¸®¿¡ ¿Ã·Á Servlet °´Ã¼¸¦ ¸¸µé°Ô µÇ°í
-ÀÌ Servlet °´Ã¼´Â doPost, doGetÀ» ÅëÇØ ¿äÃ»¿¡ ÀÀ´äÇÕ´Ï´Ù.
-
-
+í†°ìº£ê³¼ ê°™ì€ WASê°€ jspíŒŒì¼ì„ javaíŒŒì¼ë¡œ ë§Œë“¤ê³  javaíŒŒì¼ì„ ì»´íŒŒì¼í•˜ì—¬ .Classë¡œ ë§Œë“¤ì–´ ë©”ëª¨ë¦¬ì— ì˜¬ë ¤ Servlet ê°ì²´ë¥¼ ë§Œë“¤ê²Œ ë˜ê³ 
+ì´ Servlet ê°ì²´ëŠ” doPost, doGetì„ í†µí•´ ìš”ì²­ì— ì‘ë‹µí•©ë‹ˆë‹¤.
 
 
-2.¾Æ·¡¿¡ ´ëÇÏ¿© ¼³¸íÇÏ½Ã¿À.
+
+
+2.ì•„ëž˜ì— ëŒ€í•˜ì—¬ ì„¤ëª…í•˜ì‹œì˜¤.
 
 -doGet
 
-ÁÖ¼ÒÃ¢À» Å¸°í µ¥ÀÌÅÍ°¡ ³Ñ¾î°¡±â ¶§¹®¿¡ 
+ì£¼ì†Œì°½ì„ íƒ€ê³  ë°ì´í„°ê°€ ë„˜ì–´ê°€ê¸° ë•Œë¬¸ì— 
 
-µ¥ÀÌÅÍ¸¦ »ç¿ëÀÚ°¡ ±×´ë·Î º¼ ¼ö ÀÖÀ¸¹Ç·Î º¸¾È¿¡ Ãë¾à.
+ë°ì´í„°ë¥¼ ì‚¬ìš©ìžê°€ ê·¸ëŒ€ë¡œ ë³¼ ìˆ˜ ìžˆìœ¼ë¯€ë¡œ ë³´ì•ˆì— ì·¨ì•½.
 
 ex)Servlet?userid=kim&pass=1234&login=%EB%A1%9C
 
-·Î±×ÀÎÀ» ÇÑ´Ù°í ÇßÀ»¶§ À§¿Í°°ÀÌ ÁÖ¼ÒÃ¢¿¡ 
+ë¡œê·¸ì¸ì„ í•œë‹¤ê³  í–ˆì„ë•Œ ìœ„ì™€ê°™ì´ ì£¼ì†Œì°½ì— 
 
-¾ÆÀÌµð¿Í ÆÐ½º¿öµåµîÀÌ ±×´ë·Î ³ëÃâÀÌµÊ.
+ì•„ì´ë””ì™€ íŒ¨ìŠ¤ì›Œë“œë“±ì´ ê·¸ëŒ€ë¡œ ë…¸ì¶œì´ë¨.
 
-±×¸®°í ÁÖ¼Ò ÀÔ·Â¶õ¿¡ µ¥ÀÌÅÍ¸¦ Àü¼ÛÇÏ´Âµ¥
+ê·¸ë¦¬ê³  ì£¼ì†Œ ìž…ë ¥ëž€ì— ë°ì´í„°ë¥¼ ì „ì†¡í•˜ëŠ”ë°
 
-±ÛÀÚ¼ö¿¡ Á¦ÇÑÀÌÀÖ¾î¼­ ´ë·®ÀÇµ¥ÀÌÅÍ°¡ get¹æ½ÄÀ¸·Î
+ê¸€ìžìˆ˜ì— ì œí•œì´ìžˆì–´ì„œ ëŒ€ëŸ‰ì˜ë°ì´í„°ê°€ getë°©ì‹ìœ¼ë¡œ
 
-¿äÃ»ÇßÀ»°æ¿ì µ¥ÀÌÅÍ°¡ Á¤»óÀûÀ¸·Î ³Ñ¾î°¡Áö¾ÊÀ½.
+ìš”ì²­í–ˆì„ê²½ìš° ë°ì´í„°ê°€ ì •ìƒì ìœ¼ë¡œ ë„˜ì–´ê°€ì§€ì•ŠìŒ.
 
 
 
 
 -doPost
 
-µ¥ÀÌÅÍ°¡ html header¸¦ Å¸°í ³Ñ¾î°¡±â¿¡ 
+ë°ì´í„°ê°€ html headerë¥¼ íƒ€ê³  ë„˜ì–´ê°€ê¸°ì— 
 
-ÁÖ¼ÒÃ¢¿¡´Â µ¥ÀÌÅÍ°¡ º¸¿©ÁöÁö ¾ÊÀ¸¹Ç·Î º¸¾È¿¡ °­ÇÔ
+ì£¼ì†Œì°½ì—ëŠ” ë°ì´í„°ê°€ ë³´ì—¬ì§€ì§€ ì•Šìœ¼ë¯€ë¡œ ë³´ì•ˆì— ê°•í•¨
 
-¼­ºí¸´¿¡ doget() doPost()¸Þ¼­µå°¡ ÀÖ´Âµ¥ 
+ì„œë¸”ë¦¿ì— doget() doPost()ë©”ì„œë“œê°€ ìžˆëŠ”ë° 
 
-¿äÃ»¹æ½Ä¿¡ µû¶ó È£ÃâµÇ´Â ¸Þ¼­µå°¡ ´Þ¶óÁü
+ìš”ì²­ë°©ì‹ì— ë”°ë¼ í˜¸ì¶œë˜ëŠ” ë©”ì„œë“œê°€ ë‹¬ë¼ì§
 
-º¸Åë <form> ÅÂ±×¸¦ ÅëÇØ ¼­¹ö¿¡ Àü´ÞÇÏ°Å³ª ¿äÃ»À» ÇÏ°ÔµÇ´Âµ¥
+ë³´í†µ <form> íƒœê·¸ë¥¼ í†µí•´ ì„œë²„ì— ì „ë‹¬í•˜ê±°ë‚˜ ìš”ì²­ì„ í•˜ê²Œë˜ëŠ”ë°
 
-<form action = " -- "  ÀÌ ºÎºÐÀº ¿äÃ»ÇÒ ¼­ºí¸´ ÁÖ¼Ò¸¦ ÀÔ·ÂÇØÁØ´Ù.
+<form action = " -- "  ì´ ë¶€ë¶„ì€ ìš”ì²­í•  ì„œë¸”ë¦¿ ì£¼ì†Œë¥¼ ìž…ë ¥í•´ì¤€ë‹¤.
 
-      method = " -- "  ÀÌ ºÎºÐ¿¡ get,post Áß ÇÏ³ª¸¦ ¼±ÅÃÇØ¼­ ±âÀÔ.
+      method = " -- "  ì´ ë¶€ë¶„ì— get,post ì¤‘ í•˜ë‚˜ë¥¼ ì„ íƒí•´ì„œ ê¸°ìž….
 
-<input type = "submit" value = "Àü¼Û"  Àü¼Û¹öÆ°ÀÎ submitÀ» ¸¸µë. ÀÌ ¹öÆ°À» Å¬¸¯ÇÏ°ÔµÇ¸é ¼­ºí¸´À» ¿äÃ»
+<input type = "submit" value = "ì „ì†¡"  ì „ì†¡ë²„íŠ¼ì¸ submitì„ ë§Œë“¬. ì´ ë²„íŠ¼ì„ í´ë¦­í•˜ê²Œë˜ë©´ ì„œë¸”ë¦¿ì„ ìš”ì²­
 
-method ¼Ó¼ºÀ» ±âÀÔÇÏÁö¾Ê°í Àü¼Û¹æ½ÄÀ» °áÁ¤ÇÏÁö ¾ÊÀ¸¸é ±âº»°ªÀÎ get¹æ½ÄÀ¸·Î ¿äÃ»ÇÏ°ÔµÊ.
+method ì†ì„±ì„ ê¸°ìž…í•˜ì§€ì•Šê³  ì „ì†¡ë°©ì‹ì„ ê²°ì •í•˜ì§€ ì•Šìœ¼ë©´ ê¸°ë³¸ê°’ì¸ getë°©ì‹ìœ¼ë¡œ ìš”ì²­í•˜ê²Œë¨.
 
-<form> ÅÂ±× ¿Ü¿¡µµ <a> href= " ¼­ºí¸´ ÁÖ¼Ò" </a> ÅÂ±×¸¦ »ç¿ëÇÏ¿© ¸µÅ©¸¦ °É¾îÁÖ¸é ¼­ºí¸´Àº get¹æ½ÄÀ¸·Î ¿äÃ»ÇÑ°ÍÀ¸·Î ÀÎ½Ä.
+<form> íƒœê·¸ ì™¸ì—ë„ <a> href= " ì„œë¸”ë¦¿ ì£¼ì†Œ" </a> íƒœê·¸ë¥¼ ì‚¬ìš©í•˜ì—¬ ë§í¬ë¥¼ ê±¸ì–´ì£¼ë©´ ì„œë¸”ë¦¿ì€ getë°©ì‹ìœ¼ë¡œ ìš”ì²­í•œê²ƒìœ¼ë¡œ ì¸ì‹.
 
 
 
 
 -@WebServlet("/hworld")
 
-¾î³ëÅ×ÀÌ¼ÇÀ» È°¿ëÇÏ¸é web.xml¿¡ Á÷Á¢ ÀÛ¼ºÇÏ¿© ¸ÅÇÎÀ» ÇÒ ÇÊ¿ä°¡ ¾ø½À´Ï´Ù.
+ì–´ë…¸í…Œì´ì…˜ì„ í™œìš©í•˜ë©´ web.xmlì— ì§ì ‘ ìž‘ì„±í•˜ì—¬ ë§¤í•‘ì„ í•  í•„ìš”ê°€ ì—†ìŠµë‹ˆë‹¤.
 
-À§¿¡¼­ »ý¼ºÇÑ Å¬·¡½º¸¦ º¸¸é @WebServlet("/hello") ¾î³ëÅ×ÀÌ¼ÇÀ» È®ÀÎÇÒ ¼ö ÀÖ½À´Ï´Ù.
+ìœ„ì—ì„œ ìƒì„±í•œ í´ëž˜ìŠ¤ë¥¼ ë³´ë©´ @WebServlet("/hello") ì–´ë…¸í…Œì´ì…˜ì„ í™•ì¸í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤.
 
-ÅèÄ¹Àº ¾î³ëÅ×ÀÌ¼ÇÀ» È®ÀÎÇÏ¿© "ÇØ´ç ServletÀ¸·Î Á¢±ÙÇÏ±â À§ÇØ¼­´Â URL¿¡ /hello·Î Á¢±ÙÇÏ¸é µÈ´Ù"´Â ¸ÅÇÎÀ» ÇÕ´Ï´Ù.
+í†°ìº£ì€ ì–´ë…¸í…Œì´ì…˜ì„ í™•ì¸í•˜ì—¬ "í•´ë‹¹ Servletìœ¼ë¡œ ì ‘ê·¼í•˜ê¸° ìœ„í•´ì„œëŠ” URLì— /helloë¡œ ì ‘ê·¼í•˜ë©´ ëœë‹¤"ëŠ” ë§¤í•‘ì„ í•©ë‹ˆë‹¤.
 
-Servlet Å¬·¡½º¸¦ ¸¸µé¸é ÀÚµ¿À¸·Î ¾î³ëÅ×ÀÌ¼ÇÀÌ »ý¼ºµÇ°í, ÀÌ¸¦ ¼öÁ¤ÇÏ¿© URLÀ» ¹Ù²Ü ¼öµµ ÀÖ½À´Ï´Ù.
+Servlet í´ëž˜ìŠ¤ë¥¼ ë§Œë“¤ë©´ ìžë™ìœ¼ë¡œ ì–´ë…¸í…Œì´ì…˜ì´ ìƒì„±ë˜ê³ , ì´ë¥¼ ìˆ˜ì •í•˜ì—¬ URLì„ ë°”ê¿€ ìˆ˜ë„ ìžˆìŠµë‹ˆë‹¤.
 
 
 
 -HttpServlet
 
-ServletÀ¸·Î º¯È¯µÇ±â À§ÇØ¼­´Â ±âº»ÀûÀ¸·Î ´ÙÀ½ÀÇ ±¸Á¶¸¦ ¸¸Á·ÇØ¾ß ÇÕ´Ï´Ù.
+Servletìœ¼ë¡œ ë³€í™˜ë˜ê¸° ìœ„í•´ì„œëŠ” ê¸°ë³¸ì ìœ¼ë¡œ ë‹¤ìŒì˜ êµ¬ì¡°ë¥¼ ë§Œì¡±í•´ì•¼ í•©ë‹ˆë‹¤.
 
-ÅèÄ¹¿¡¼­ ¸¸µé¾î ³õÀº HttpServlet Å¬·¡½º¸¦ »ó¼Ó
+í†°ìº£ì—ì„œ ë§Œë“¤ì–´ ë†“ì€ HttpServlet í´ëž˜ìŠ¤ë¥¼ ìƒì†
 
-HTTP ¿äÃ» ¸Þ¼­µåÀÎ Get¹æ½Ä°ú Post ¹æ½ÄÀ» Ã³¸®ÇÏ±â À§ÇØ doGet()°ú doPost()¸¦ ¿À¹ö¶óÀÌµù
+HTTP ìš”ì²­ ë©”ì„œë“œì¸ Getë°©ì‹ê³¼ Post ë°©ì‹ì„ ì²˜ë¦¬í•˜ê¸° ìœ„í•´ doGet()ê³¼ doPost()ë¥¼ ì˜¤ë²„ë¼ì´ë”©
 
-¸Å°³º¯¼ö·Î´Â HttpServletReqeust, HttpServletResponse Å¬·¡½º¸¦ Á¤ÀÇÇÕ´Ï´Ù.
-
-
-
-
-
-
-3.float ¿Í overflow¿¡ ´ëÇÏ¿© ¼³¸íÇÏ½Ã¿À.
-
-float´Â ¿ä¼Ò¸¦ ¿ÞÂÊ ¶Ç´Â ¿À¸¥ÂÊ¿¡ ¹èÄ¡ÇÒ ¶§ À¯¿ëÇÑ ¼Ó¼ºÀÔ´Ï´Ù. float ¼Ó¼ºÀ» ºÎ¿©ÇÑ ¿ä¼ÒÀÇ ´ÙÀ½ ¿ä¼Ò´Â
-
-float ¼Ó¼ºÀ» ºÎ¿©ÇÑ ¿ä¼Ò°¡ Â÷ÁöÇÏ´Â À§Ä¡¸¸ Á¦¿ÜÇÏ°í ³ª¸ÓÁö °ø°£À» Ã¤¿ì°Ô µË´Ï´Ù. 
-
-»çÁøÀ» ¿ÞÂÊ ¶Ç´Â ¿À¸¥ÂÊ¿¡ ¹èÄ¡ÇÏ°í ±× ÁÖÀ§¸¦ ÅØ½ºÆ®·Î Ã¤¿ï ¶§ »ç¿ëÇÏ°Å³ª, »çÀÌÆ® ·¹ÀÌ¾Æ¿ôÀ» ¸¸µé ¶§ »ç¿ëÇÕ´Ï´Ù.
-
-
-
-overflow´Â ³»¿ëÀÌ ¿ä¼ÒÀÇ Å©±â¸¦ ¹þ¾î³µÀ» ¶§ ¾î¶»°Ô Ã³¸®ÇÒÁö¸¦ Á¤ÇÏ´Â ¼Ó¼ºÀÔ´Ï´Ù. 
-
-³»¿ëÀÌ ÁÖ¾îÁø °ø°£¿¡ ´Ù µé¾î°¡Áö ¾ÊÀ» ¶§, º¸¿©ÁÖ°Ô ÇÒ ¼öµµ ÀÖ°í, 
-
-¾È º¸ÀÌ°Ô ÇÒ ¼öµµ ÀÖ°í, ½ºÅ©·Ñ¹Ù¸¦ ¸¸µé°Ô ÇÒ ¼öµµ ÀÖ½À´Ï´Ù.
+ë§¤ê°œë³€ìˆ˜ë¡œëŠ” HttpServletReqeust, HttpServletResponse í´ëž˜ìŠ¤ë¥¼ ì •ì˜í•©ë‹ˆë‹¤.
 
 
 
 
 
 
+3.float ì™€ overflowì— ëŒ€í•˜ì—¬ ì„¤ëª…í•˜ì‹œì˜¤.
 
-4. ¾Æ·¡ÀÇ ¼Ó¼ºÀ» ¼³¸íÇÏ½Ã¿À.
+floatëŠ” ìš”ì†Œë¥¼ ì™¼ìª½ ë˜ëŠ” ì˜¤ë¥¸ìª½ì— ë°°ì¹˜í•  ë•Œ ìœ ìš©í•œ ì†ì„±ìž…ë‹ˆë‹¤. float ì†ì„±ì„ ë¶€ì—¬í•œ ìš”ì†Œì˜ ë‹¤ìŒ ìš”ì†ŒëŠ”
+
+float ì†ì„±ì„ ë¶€ì—¬í•œ ìš”ì†Œê°€ ì°¨ì§€í•˜ëŠ” ìœ„ì¹˜ë§Œ ì œì™¸í•˜ê³  ë‚˜ë¨¸ì§€ ê³µê°„ì„ ì±„ìš°ê²Œ ë©ë‹ˆë‹¤. 
+
+ì‚¬ì§„ì„ ì™¼ìª½ ë˜ëŠ” ì˜¤ë¥¸ìª½ì— ë°°ì¹˜í•˜ê³  ê·¸ ì£¼ìœ„ë¥¼ í…ìŠ¤íŠ¸ë¡œ ì±„ìš¸ ë•Œ ì‚¬ìš©í•˜ê±°ë‚˜, ì‚¬ì´íŠ¸ ë ˆì´ì•„ì›ƒì„ ë§Œë“¤ ë•Œ ì‚¬ìš©í•©ë‹ˆë‹¤.
+
+
+
+overflowëŠ” ë‚´ìš©ì´ ìš”ì†Œì˜ í¬ê¸°ë¥¼ ë²—ì–´ë‚¬ì„ ë•Œ ì–´ë–»ê²Œ ì²˜ë¦¬í• ì§€ë¥¼ ì •í•˜ëŠ” ì†ì„±ìž…ë‹ˆë‹¤. 
+
+ë‚´ìš©ì´ ì£¼ì–´ì§„ ê³µê°„ì— ë‹¤ ë“¤ì–´ê°€ì§€ ì•Šì„ ë•Œ, ë³´ì—¬ì£¼ê²Œ í•  ìˆ˜ë„ ìžˆê³ , 
+
+ì•ˆ ë³´ì´ê²Œ í•  ìˆ˜ë„ ìžˆê³ , ìŠ¤í¬ë¡¤ë°”ë¥¼ ë§Œë“¤ê²Œ í•  ìˆ˜ë„ ìžˆìŠµë‹ˆë‹¤.
+
+
+
+
+
+
+
+4. ì•„ëž˜ì˜ ì†ì„±ì„ ì„¤ëª…í•˜ì‹œì˜¤.
 
 -block
-display ¼Ó¼º°ªÀÌ ºí·Ï(block)ÀÎ ¿ä¼Ò´Â ¾ðÁ¦³ª »õ·Î¿î ¶óÀÎ(line)¿¡¼­ ½ÃÀÛÇÏ¸ç, ÇØ´ç ¶óÀÎÀÇ ¸ðµç ³Êºñ¸¦ Â÷ÁöÇÕ´Ï´Ù.
+display ì†ì„±ê°’ì´ ë¸”ë¡(block)ì¸ ìš”ì†ŒëŠ” ì–¸ì œë‚˜ ìƒˆë¡œìš´ ë¼ì¸(line)ì—ì„œ ì‹œìž‘í•˜ë©°, í•´ë‹¹ ë¼ì¸ì˜ ëª¨ë“  ë„ˆë¹„ë¥¼ ì°¨ì§€í•©ë‹ˆë‹¤.
 
 -inline
-display ¼Ó¼º°ªÀÌ ÀÎ¶óÀÎ(inline)ÀÎ ¿ä¼Ò´Â »õ·Î¿î ¶óÀÎ(line)¿¡¼­ ½ÃÀÛÇÏÁö ¾Ê½À´Ï´Ù.
-¶ÇÇÑ, ¿ä¼ÒÀÇ ³Êºñµµ ÇØ´ç ¶óÀÎ ÀüÃ¼°¡ ¾Æ´Ñ ÇØ´ç HTML ¿ä¼ÒÀÇ ³»¿ë(content)¸¸Å­¸¸ Â÷ÁöÇÕ´Ï´Ù.
+display ì†ì„±ê°’ì´ ì¸ë¼ì¸(inline)ì¸ ìš”ì†ŒëŠ” ìƒˆë¡œìš´ ë¼ì¸(line)ì—ì„œ ì‹œìž‘í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
+ë˜í•œ, ìš”ì†Œì˜ ë„ˆë¹„ë„ í•´ë‹¹ ë¼ì¸ ì „ì²´ê°€ ì•„ë‹Œ í•´ë‹¹ HTML ìš”ì†Œì˜ ë‚´ìš©(content)ë§Œí¼ë§Œ ì°¨ì§€í•©ë‹ˆë‹¤.
 
 -inline-block
-inline°ú block µÎ°³¸¦ ÀüºÎ °¡Áö°í ÀÖ´Â ¼Ó¼º
-¿ä¼Ò´Â inlineÀÌ°í ³»ºÎ´Â blockÃ³·³ Ç¥½ÃÇÔ.
+inlineê³¼ block ë‘ê°œë¥¼ ì „ë¶€ ê°€ì§€ê³  ìžˆëŠ” ì†ì„±
+ìš”ì†ŒëŠ” inlineì´ê³  ë‚´ë¶€ëŠ” blockì²˜ëŸ¼ í‘œì‹œí•¨.
 
 -display:none
-display´Â ¿ä¼ÒÀÇ Á¾·ù¸¦ ¼±ÅÃÇÏ´Â ¼Ó¼º.
-inlineÀ» blockÀ¸·Î ¹Ù²Ü¼öµµ ÀÖ°í, ±× ¹Ý´ëµµ °¡´ÉÇÔ.
-noneÀº ¾Æ¹«°Íµµ »ý¼ºÇÏÁö ¾Ê´Â »óÅÂ. °ø°£ÀÌ ¾øÀ½.
+displayëŠ” ìš”ì†Œì˜ ì¢…ë¥˜ë¥¼ ì„ íƒí•˜ëŠ” ì†ì„±.
+inlineì„ blockìœ¼ë¡œ ë°”ê¿€ìˆ˜ë„ ìžˆê³ , ê·¸ ë°˜ëŒ€ë„ ê°€ëŠ¥í•¨.
+noneì€ ì•„ë¬´ê²ƒë„ ìƒì„±í•˜ì§€ ì•ŠëŠ” ìƒíƒœ. ê³µê°„ì´ ì—†ìŒ.
 
 -visivility:hidden
-¿ä¼Ò°¡ º¸ÀÌÁö´Â ¾ÊÁö¸¸, ¿©ÀüÈ÷ ±× °ø°£À» Â÷ÁöÇÏ¸ç Åõ¸íÇÏ°Ô ³²À½.
+ìš”ì†Œê°€ ë³´ì´ì§€ëŠ” ì•Šì§€ë§Œ, ì—¬ì „ížˆ ê·¸ ê³µê°„ì„ ì°¨ì§€í•˜ë©° íˆ¬ëª…í•˜ê²Œ ë‚¨ìŒ.
 
 
-5.13-1 ±¸Çö ÇÏ½Ã¿À.
+5.13-1 êµ¬í˜„ í•˜ì‹œì˜¤.
 
 
 <!DOCTYPE html>
@@ -183,20 +183,23 @@ noneÀº ¾Æ¹«°Íµµ »ý¼ºÇÏÁö ¾Ê´Â »óÅÂ. °ø°£ÀÌ ¾øÀ½.
 		
 		<style>
 			#all{
-				width:510px; height:515px;
+				width:515px; height:535px;
 				border :1px solid #dddddd;
+				padding: 4px;
 			}
 		
 			#header {
 				width:500px; height:100px;
 				border :1px solid #dddddd;
 				text-align:center;
+				margin: 3px;
 			}
 	
 			#navigtiron{
 				width:500px; height:100px;
 				border :1px solid #dddddd;
 				text-align:center;
+				margin: 3px;
 			}
 			
 			#menu1{
@@ -233,27 +236,31 @@ noneÀº ¾Æ¹«°Íµµ »ý¼ºÇÏÁö ¾Ê´Â »óÅÂ. °ø°£ÀÌ ¾øÀ½.
 			
 			#wrap{
 				overflow:hidden;
+				padding: 4px;
 			}
 			
 			#content{
-				width:300px; height:200px;
+				width:294px; height:200px;
 				border :1px solid #dddddd;
 				text-align:center;
 				float:left;
+				margin: 3px;
 			
 			}
 			
 			#banner{
-				width:200px; height:200px;
+				width:197px; height:200px;
 				border :1px solid #dddddd;
 				text-align:center;
-				float:right;
+				float:left;
+				margin: 3px;
 			}
 			
 			#footer{
 				width:500px; height:100px;
 				border :1px solid #dddddd;
 				text-align:center;
+				margin: 3px;
 			
 			} 
 			
@@ -292,4 +299,3 @@ noneÀº ¾Æ¹«°Íµµ »ý¼ºÇÏÁö ¾Ê´Â »óÅÂ. °ø°£ÀÌ ¾øÀ½.
 		</div>
 	</body>
 </html>
-
