@@ -1,0 +1,151 @@
+context path 프로그램명
+
+웹서버와 WAS차이 정적과 동적
+
+Web.xml 톰켓설정파일
+
+relative 블록위치의 원래 위치에서 띄움
+
+
+1.Servlet 라이프사이클(생명주기) 에 대하여 설명하시오.
+
+1.요청이 오면, Servlet 클래스가 로딩되어 요청에 대한 Servlet 객체가 생성됩니다.
+2.서버는 init() 메소드를 호출해서 Servlet을  초기화 합니다.
+3.service() 메소드를 호출해서 Servlet이 브라우저의 요청을 처리하도록 합니다.
+4.service() 메소드는 특정 HTTP 요청(GET, POST 등)을 처리하는 메서드 (doGet(), doPost() 등)를 호출합니다.
+5.서버는 destroy() 메소드를 호출하여 Servlet을 제거합니다.
+
+2.servlet 컨테이너에 대하여 설명하시오.
+
+서블릿(servlet)은 서블릿 컨테이너 위에서 작동하는 웹서비스용 자바 인터페이스(javax.servlet.Servlet)의 객체입니다.  
+자바 서블릿은 웹페이지를 동적으로 생성하는 서버측 프로그램 혹은 그 사양이라고 해석할 수 있습니다. 
+쉽게 자바로 작성된 서버 사이트 애플리케이션이라고 생각하시면 되도 무방합니다.
+특징으로는 독립 실행 프로그램과 달리 진입점 즉, main 메서드가 없으며, 
+서블릿 컨테이너에 등록된 후 서블릿 컨테이너에 의해 생성, 호출, 소멸이 이루어집니다.
+
+서블릿 컨테이너(servlet container)는 서블릿을 관리하고 동작시킬 수 있는 환경을 제공하는 서버 프로그램입니다. 
+컨테이너는 특정 객체의 생성과 관리를 담당하며 객체 운용에 필요한 다양한 기능을 제공합니다. 
+또한 HTTP요청을 받아서 해당 서블릿을 동작 시키고 그 결과를 사용자의 브라우저로 전달할 수 있는 기능하며 네트워크 통신, 
+서블릿의 생명주기 관리, 스레드 기반 병렬처리를 대행해 프로그래머의 고생을 덜어주는 역할을 합니다.
+보통 컨테이너는 서버 안에 포함되어 배포 및 구동됩니다.
+
+
+3.<context-param>과 <init-param> 의 차이는?
+
+<init-param>
+서블릿 초기화 파라미터
+-특정 서블릿에서만 사용될 수 있는 초기화 파라미터를 지정해서 가져다 사용할 수 있다.
+
+2가지 방법)
+1) web.xml의 servlet 태그 내에 정의하기
+2) 어노테이션으로 @WebServlet(initParams={@WebInitParam(name="",value="")} 방식으로 지정하기
+
+
+<context-param>
+모든 Servlet에서 사용할 수 있는 초기화 변수 설정하기(컨텍스트 파라미터)
+-web.xml에 context-param 태그 내에 선언한다.
+서블릿에서 가져다 사용할 때는 getServletContext() 를 가져온 뒤 getInitParameter("")을 사용해 값을 꺼내온다.
+
+
+4.context path에 대하여 설명하시오.
+
+WAS(Web Application Server)에서 웹어플리케이션을 구분하기 위한 path이다.
+이클립스에서 프로젝트를 생성하면 , 자동으로 server.xml에 추가된다.
+
+
+5.position 속성 4가지에 대하여 설명하시오.
+
+static : css의 기본적인 속성 default 처리되어있다.
+relative : static의 원래 위치부터 계산합니다.
+absolute :  상위 요소인 static 위치를 기준으로 위치가 결정 된다.
+fixed : 화면이 바뀌어도 고정된 위치를 설정 할 수 있고, 상위 요소에 영향을 받지 않는다.
+
+6.예제 jsp_7_1_ex_formex를 꼬오록 외우시오.
+
+
+
+
+7.실전 HTML5 & CSS동영상강좌_12강_CSS 속성-III.pptx
+에 있는 화면을 구현하시오.
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="EUC-KR">
+		<title>Insert title here</title>
+		
+		<style>
+			#all {
+				width:800px;
+				margin: 0 auto;
+				border:1px solid #dddddd;
+				padding:10px;
+				overflow:hidden;
+				
+			}
+			#header {
+				font-size:2.0em;
+				height:100px;
+				line-height:100px;
+				text-align:center;
+				text-decoration:underline;
+			}
+			
+			#cantent{
+				text-align:left;
+
+			}
+			
+			#canten1{
+				text-align:left;
+			}
+			
+			#canten2{
+				text-align:right;
+			}
+			
+			#footer{
+				
+				border-top:1px solid #cccccc;
+				height:111px;
+           		line-height:111px;
+				text-align:center;
+				
+			}
+			
+			
+		</style>
+		
+	</head>
+	<body>
+		
+		<div id = "all">
+		
+		<div id = "header">
+			<p>HTML5,CSS3 Document</p>
+		</div>
+		
+		<div id = "cantent">
+			<p>To. all member</p>
+		</div>
+		
+		<div id = "cantent1">
+			<p>html5</p>
+		</div>
+		
+		<div id = "cantent2">
+			<p>Form.SBA</p>
+		</div>
+		
+		
+		<div id ="footer">
+			<a href = "#">서울산업진흥원</a>
+		</div>
+		
+		</div>
+	</body>
+</html>
+
+
+
+
