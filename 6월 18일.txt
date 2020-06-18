@@ -1,0 +1,254 @@
+동적언어: 프로그래밍 언어가 들어가는 것.
+내부 객체
+meta태그 : 웹서버가 인식하게 만드는 태그
+
+1.아래의 용어에 대하여 설명하시오.
+
+-지시자 : 지시자는 page directive, include directive, taglib directive 3개의 지시자를 제공하는데 <%@ 로 시작해서 %>로 끝나고, 
+page 지시자는 jsp전체에 적용되는 정보를 입력하기 위해 사용합니다.
+주로 자바에서 사용하는 import와 같은 역할을 합니다.
+
+incloude 지시자는 현재 jsp페이지에 다른 jsp페이지나 html문서를 불러와 한 화면에 표시해 주기 위해서 사용합니다.
+=======>   <%@ include file="파일명"%>
+
+-스크립틀릿 <%로 시작해서 %>로 끝나고, 이 사이에 자바 코드들을 작성 할 수 있습니다.
+
+-expression <%= 로 시작해서%>로 끝나고, 여기 적히는 식들은 상수나 변수 이름 하나로 작성할 수도  있고,
+ 연산자를 포함하는 식이 적힐 수도 있고, 리턴값을 가지는 메소드가 올 수도 있습니다.
+
+-선언 <%! 로 시작해서 %>로 끝나고, 이 사이에 메소드를 선언할 수 있습니다.
+
+
+
+2.미디어 쿼리에 대하여 설명하시오.
+
+사이트에 접속하는 장치에 따라 특정한 CSS 스타일 사용하도록 한다.
+뷰 포트(View Port) 너비 같은 여러 장치들의 조건에 맞춰 특정한 CSS 스타일을 지정한다.
+
+메타작성후 <meta name ="viewport" content = "width=divice-width, initial-scale=1">
+
+스타일태그안에서 작성
+<style>
+@media screen and (max-width:1024px){
+			body{
+				background: url(images/bg0.jpg) no-repeat fiexd;
+				background-size: cover;
+			}
+</style>
+
+3. table 태그를 이용하여 구구단을 구현 하시오.
+
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="EUC-KR">
+		<title>Insert title here</title>
+		
+		<style>
+			
+			td {	
+			border: 1px solid black; 
+			width:100px;
+			height:30px;
+			text-align:center;
+			
+			}
+		
+		</style>
+		
+	</head>
+	<body>
+
+			<table border="1">
+			
+				<tr>
+				<%
+					for(int i = 2; i <= 9; i++){
+				%>		
+					<td><%= i+"단" %></td>
+				<%	
+					}
+				%>
+				</tr>
+				
+				<%
+					for(int i = 1; i <= 9; i++){
+				%>		
+					<tr>
+							
+				<% 
+						for(int j = 2; j <= 9; j++){
+				%>			
+							<td><%= j+"x"+i+"="+i*j %></td>
+				<%		
+					}
+				%>
+					<tr>
+				<%
+				}
+				
+				%>
+
+				
+			</table>
+			
+		
+		
+		
+	</body>
+</html>
+
+
+4.input box 로 가로와 세로를 서버로 전달하여, 해당 사각형의 넓이를 구하는 웹프로그래밍을 하시오.
+
+html파일
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="EUC-KR">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		
+		<form action="RectangleArea.jsp" method="post">
+			사각형 가로:<input name="width" size=10>
+			사각형 세로:<input name="height" size=10>
+			<input type="submit" value="입력">
+			</form>
+			
+	</body>
+</html>
+
+
+jsp파일
+
+<%@page import="jsp_haha.Rectangle"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="EUC-KR">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		
+				<%
+					Rectangle area = new Rectangle();
+					
+					String width = request.getParameter("width");
+					String height = request.getParameter("height");
+					
+					int Recwidth = area.RectangleWidth(Integer.parseInt(width));
+					int Recheight = area.RectangleHeight(Integer.parseInt(height));
+					
+					out.println("사각형의 넓이:" + area.RectangleArea(Recwidth, Recheight));
+				%>
+		
+		
+	</body>
+</html>
+
+클래스 파일
+
+package jsp_haha;
+
+public class Rectangle {
+	
+	public int RectangleWidth(int width) {
+		return width;
+	}
+	
+	public int RectangleHeight(int height) {
+		return height;
+	}
+	
+	public int RectangleArea(int width ,int height) {
+		return width* height;
+	}
+}
+
+
+5.4.input box 로 가로와 세로를 서버로 전달하여, 해당 삼각형의 넓이를 구하는 웹프로그래밍을 하시오.
+
+
+html파일
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="EUC-KR">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		
+		<form action="Triangle.jsp" method = "post">
+			삼각형 밑변:<input name = "baseline" size = 10>
+			삼각형 높이:<input name = "height" size = 10>
+			<input type ="submit" value = "입력" >
+		</form>
+		
+	</body>
+</html>
+
+
+
+jsp파일
+
+<%@page import="jsp_haha.Triangle"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="EUC-KR">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		
+		<%
+			Triangle area = new Triangle();
+		
+			String baseline = request.getParameter("baseline");
+			String height = request.getParameter("height");
+			
+			int Tribase = area.TrianBase(Integer.parseInt(baseline));
+			int Triheight = area.TrianHeight(Integer.parseInt(height));
+			
+			out.println("삼각형의 넓이 :" + area.TrianArea(Tribase, Triheight));
+		%>
+		
+	</body>
+</html>
+
+
+
+클래스 파일
+
+
+package jsp_haha;
+
+public class Triangle {
+	public int TrianBase(int baseline) {
+		return baseline;
+	}
+	public int TrianHeight(int height) {
+		return height;
+	}
+	public int TrianArea(int baseline, int height) {
+		return baseline * height / 2;
+	}
+}
+
+
+
+
+
+
+
+
+
+
