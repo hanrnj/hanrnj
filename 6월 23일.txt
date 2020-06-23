@@ -1,0 +1,229 @@
+driver 다리역할 
+
+--날짜 연산
+--날짜 - 숫자
+--날짜 + 숫자
+select sysdate-1 AS 어제, SYSDATE AS 오늘 , SYSDATE +1 AS 내일 from dual;
+
+--각 직원들이 근무한 개월 수를 구하는 쿼리문
+SELECT ENAME, SYSDATE, HIREDATE, TRUNC(MONTHS_BETWEEN(SYSDATE, HIREDATE)) 근무개월수 FROM EMP;
+
+--입사 날짜에서 4개월을 추가한 결과값
+SELECT ENAME,HIREDATE, ADD_MONTHS(HIREDATE,4)FROM EMP;
+
+--해당 달의 마지막 날짜를 반환하는 함수
+SELECT ENAME, HIREDATE,LAST_DAY(HIREDATE) FROM EMP;
+
+--형 변환 함수(숫자형, 문자형, 날짜형)
+--현재 날짜를 문자형으로 변환하여 출력하는 쿼리문
+SELECT TO_CHAR(SYSDATE) FROM DUAL;
+SELECT TO_CHAR(SYSDATE, 'YYYY-MM-DD') FROM DUAL;
+
+--현재 날짜와 시간을 출력하는 쿼리문
+SELECT TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS') AS 시간 FROM DUAL;
+
+--각 지역별 통화 기호를 앞에 붙이고 천 단위마다 콤마를 붙여서 출력하는 쿼리문(예 1,230,000)
+SELECT ENAME, SAL, TO_CHAR(SAL , 'L999,999') FROM EMP;
+
+--자릿수가 맞지 않을 경우 0은 0으로 채우고 9는 채우지 않는다.
+SELECT TO_CHAR(123456, '000000000'), TO_CHAR(123456, '999,999,999') FROM DUAL;
+
+SELECT ENAME, HIREDATE FROM EMP WHERE HIREDATE = TO_DATE(19810220, 'YYYYMMDD');
+
+--올해 며칠이 지났는지 현재 날짜에서 2016/01/01을 뺀 결과를 출력하는 쿼리문
+SELECT TRUNC(SYSDATE-TO_DATE('2016/01/01', 'YYYY/MM/DD')) FROM DUAL;
+
+--'20,000'과 '10,000'의 차이를 알아보기 위해서 빼기(-)연산을 구하는 쿼리문
+SELECT TO_NUMBER('20,000', '99,999')-TO_NUMBER('10,000', '99,999') FROM DUAL;
+
+--NULL을 다른 값으로 변환하는 NVL함수
+SELECT ENAME, SAL, COMM, JOB FROM EMP ORDER BY JOB;
+
+SELECT ENAME, SAL, NVL(COMM,0) FROM EMP ORDER BY JOB;
+
+--DECODE 함수 명령어
+SELECT DEPTNO FROM EMP ORDER BY DEPTNO;
+SELECT DEPTNO, DECODE(DEPTNO, 10, 'A', 20, 'B', 'DEFAULT') FROM EMP ORDER BY DEPTNO;
+
+--CASE 함수 명령어
+SELECT ENAME, DEPTNO, 
+       CASE WHEN DEPTNO=10 THEN 'ACCOUNTING' 
+            WHEN DEPTNO=20 THEN 'RESEARCH' 
+            WHEN DEPTNO=30 THEN 'SALES' 
+            WHEN DEPTNO=40 THEN 'OPERATIONS' 
+       END AS 부서이름
+FROM EMP;
+
+--그룹 함수
+--사원의 급여의 전체합
+SELECT SUM(SAL) FROM EMP;
+
+--커미션 총액을 구하는 쿼리문
+SELECT SUM(COMM) FROM EMP;
+
+SELECT TRUNC(AVG(SAL)) FROM EMP;
+
+SELECT MAX(SAL), MIN(SAL) FROM EMP;
+
+
+
+
+
+
+1.DB접속을 위한 3개의 객체와 해당 객체를 얻는 방법을 설명하시오.
+
+		<%!
+			
+			Connection connection;
+			Statement statement;
+			ResultSet resultSet;
+			
+			String driver = "oracle.jdbc.driver.OracleDriver"; 
+			String url = "jdbc:oracle:thin:@localhost:1521:xe";
+			String uid = "scott";
+			String upw = "tiger";
+			String query = "select * from emp";
+		
+		%>
+
+		<%
+		try{
+			
+			Class.forName(driver);
+			connection = DriverManager.getConnection(url,uid,upw);
+			statement = connection.createStatement();
+			resultSet = statement.executeQuery(query);
+			
+			while(resultSet.next()){
+				String ename = resultSet.getString("ename");
+				String hiredate = resultSet.getString("hiredate");
+			
+				
+				out.println("이름 : " + ename + " " + "입사 날짜 : " + hiredate + "<br />");
+			}
+		} catch(Exception e){
+			
+		}finally{
+			try{
+				if(resultSet != null) resultSet.close();
+				if(statement != null) statement.close();
+				if(connection != null) connection.close();
+			} catch(Exception e){
+				
+			}
+		}
+		
+		%>
+
+2.Statement 객체의 executeUpdate 와 executeQuery() 의 차이는?
+
+Statement 객체는 SQL문을 데이터베이스로 전송하는데 사용한다.
+
+① executeQuery 메소드
+
+     : 하나의 ResultSet을 만드는 SQL문에서 사용(executeQyery 메소드는 ResultSet 객체를 리턴한다.)
+     : 주로 SELECT문을 이용하는 조회에서 사용됨.
+
+  ② executeUpdate 메소드
+
+     : INSERT, UPDATE, DELETE 등 (DML), CREATE, DROP 등(DDL)문들을 실행하는데 사용
+       └ DML을 사용할 경우 리턴값 : 작용한 열의 개수(갱신 카운트로 간주되는)를 나타내는 정수
+       └ DDL을 사용할 경우 리턴값 : 0을 리턴(DML을 실행 후 아무런 영향을 주지 않은 경우에도 '0'을 리턴한다.)
+
+
+3.JDBC란?
+
+- Java Database Connectivity
+- 자바에서 DB 프로그래밍을 하기 위해 사용되는 API
+
+JDBC 프로그래밍 코딩 흐름
+
+1) JDBC 드라이버 로드
+2) DB 연결
+3) DB에 데이터를 읽거나 쓰기 (SQL문)
+4) DB 연결 종료
+
+
+4.emp 의 모든 정보를 가져오는 웹프로그래밍을 하시오.
+조건 1) 테이블로 가운데 정렬 시킬것.
+
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="EUC-KR">
+		<title>Insert title here</title>
+		
+	</head>
+	<body>
+		<%!
+			
+			Connection connection;
+			Statement statement;
+			ResultSet resultSet;
+			
+			String driver = "oracle.jdbc.driver.OracleDriver";
+			String url = "jdbc:oracle:thin:@localhost:1521:xe";
+			String uid = "scott";
+			String upw = "tiger";
+			String query = "select * from emp";
+		
+		%>
+		
+		<table border = "1">
+		<tr>
+		
+		<%
+		try{
+			
+			Class.forName(driver);
+			connection = DriverManager.getConnection(url,uid,upw);
+			statement = connection.createStatement();
+			resultSet = statement.executeQuery(query);
+			
+			while(resultSet.next()){
+				String empno = resultSet.getString("empno");
+				String ename = resultSet.getString("ename");
+				String job = resultSet.getString("job");
+				String mgr = resultSet.getString("mgr");
+				String hiredate = resultSet.getString("hiredate");
+				String sal = resultSet.getString("sal");
+				String comm = resultSet.getString("comm");
+				String deptno = resultSet.getString("deptno");
+		 %>
+		 </tr>
+		 
+			<tr>
+			<td><%= "사원번호 :" + empno %></td><td><%= "이름 :" + ename %></td>
+			<td><%= "직업 :" + job %></td><td><%= "mgr :" + mgr %></td>
+			<td><%= "입사날짜 :" + hiredate %></td><td><%= "월급 :" + sal %></td>
+			<td><%= "comm :" + comm %></td><td><%= "부서번호 :" + deptno %></td>
+			</tr>
+			
+		<%
+			}
+		
+		} catch(Exception e){
+			
+		}finally{
+			try{
+				if(resultSet != null) resultSet.close();
+				if(statement != null) statement.close();
+				if(connection != null) connection.close();
+			} catch(Exception e){
+				
+			}
+		}
+		
+		%>
+		
+		</table>
+		
+		
+	</body>
+</html>
