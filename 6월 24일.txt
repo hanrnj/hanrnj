@@ -348,18 +348,19 @@ SELECT AVG(SAL), MAX(SAL), MIN(SAL) FROM EMP WHERE DEPTNO = 10;
 SELECT DEPTNO, AVG(SAL), MAX(SAL), MIN(SAL) FROM EMP GROUP BY DEPTNO;
 
 --10번 부서에 속한 사람들의 직책별 월급평균을 구하시오
-SELECT AVG(SAL) FROM EMP 
+SELECT JOB, AVG(SAL) FROM EMP where deptno = 10 group by job;
 
---부서별 월급 평균, 최대값, 최소값을 구하되 월급평균이 3000이상인 부서에 대하여 구하시오
-SELECT AVG(SAL), MAX(SAL), MIN(SAL) FROM EMP GROUP BY DEPTNO HAVING AVG(SAL) >= 3000;
-
+--부서별 월급 평균, 최대값, 최소값을 구하되 월급평균이 2000이상인 부서에 대하여 구하시오
+SELECT deptno, AVG(SAL), MAX(SAL), MIN(SAL) FROM EMP GROUP BY DEPTNO HAVING AVG(SAL) >= 2000;
 
 --직책별 월급평균, 최대값, 최소값을 구하되 월급의 최대값이 4000보다 큰 직책에 대하여 구하시오
-
-
+SELECT job, AVG(SAL) 월급평균, MAX(SAL) 최대값, MIN(SAL) 최소값 FROM EMP GROUP BY job HAVING AVG(SAL) > 4000;
 
 --10번 부서에 속한 사람들의 직책별 월급평균을 구하되 월급평균이 3500이하인 직책에 대하여 구하시오.
+SELECT JOB, AVG(SAL) FROM EMP where deptno = 10 group by job HAVING AVG(SAL) <= 3500;
 
 --직책이 CLERK인 사람들의 부서별 월급 평균, 최대값을 구하되 월급의 최대값이 3600보다 작은 부서에 대하여 구하시오.
+SELECT DEPTNO, AVG(SAL), MAX(SAL), MIN(SAL) FROM EMP WHERE JOB = 'CLERK' GROUP BY DEPTNO HAVING MAX(SAL) < 3600;
 
 --이름에 ER이 들어있는 사람들의 직책별 월급평균, 최대값, 최소값을 구하시오.
+SELECT  JOB, AVG(SAL) FROM EMP where ENAME LIKE '%ER%' GROUP BY JOB;
