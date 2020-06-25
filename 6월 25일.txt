@@ -1,0 +1,354 @@
+Connection pool = DataSource
+DBCP를 객체화 시켜놓은것 DataSource
+
+until response
+request 객체는 response 하게되면 서버에서 더 이상 이용할 수 없다.
+forward,redirect 차이
+
+
+
+--문법순서 
+select      
+from
+where
+group by
+having
+order by
+
+--실행순서
+from
+where
+group by
+having
+select
+order by
+
+
+--사원 정보를 출력할 때, 각 사원이 소속된 부서의 상세 정보를 출력하기 위해 두 개의 테이블을 조인하는 쿼리문
+SELECT ENAME,DNAME FROM EMP E ,DEPT D WHERE E.DEPTNO = D.DEPTNO;
+ 
+--EQUI JOIN
+--조인 대상이 되는 두 테이블에서 공통적으로 존재하는 컬럼의 값이 일치되는 행을 연결하여 결과를 생성하는 조인 기법이다.
+
+--NUN EQUI JOIN 비등가 조인
+SELECT * FROM salgrade;
+
+--각 사원의 급여가 몇 등급인지 살펴보는 쿼리문
+SELECT * FROM EMP,SALGRADE WHERE SAL BETWEEN LOSAL AND HISAL;
+
+--한 명의 사원 이름과 소속 부서명, 급여의 등급을 출력하는 쿼리문
+SELECT E.ENAME,d.dname,s.grade,D.DEPTNO FROM EMP E,DEPT D,SALGRADE S WHERE E.DEPTNO = D.DEPTNO AND E.SAL BETWEEN S.LOSAL AND S.HISAL;
+
+--이름이 SMITH인 사원의 매니저 이름
+SELECT EMPLOYEE.ENAME||'의 매니저는 '|| MANAGER.ENAME||'입니다.' FROM EMP EMPLOYEE, EMP MANAGER WHERE EMPLOYEE.MGR = MANAGER.EMPNO;
+
+--조인 조건에 만족하지 못하였더라도 해당 로우를 나타내고 싶을 때 OUTER JOIN을 사용한다.
+--특정 사원의 매니저가 누구인지 알아내는 쿼리문
+SELECT EMPLOYEE.ENAME||'의 매니저는 '|| MANAGER.ENAME||'입니다.' FROM EMP EMPLOYEE, EMP MANAGER WHERE EMPLOYEE.MGR = MANAGER.EMPNO(+);
+
+--ANSI SQL
+SELECT ENAME,DNAME FROM EMP LEFT OUTER JOIN DEPT ON EMP.deptno = DEPT.DEPTNO;
+SELECT EMP.ENAME, DEPT.DNAME FROM EMP,DEPT WHERE EMP.DEPTNO = DEPT.DEPTNO(+);
+
+--사원들의 이름, 부서번호, 부서이름 출력
+SELECT E.ENAME, D.DEPTNO, D.DNAME FROM EMP E, DEPT D WHERE E.DEPTNO = D.DEPTNO;
+
+--'DALLAS'에서 근무하는 사원의 이름, 직위, 부서번호, 부서이름 출력
+SELECT E.ENAME, E.JOB, E.DEPTNO, D.DNAME FROM EMP E, DEPT D WHERE E.DEPTNO = D.DEPTNO AND D.LOC = 'DALLAS';
+
+--이름의 'A'가 들어가는 사람들의 이름과 부서이름 출력
+SELECT E.ENAME, D.DNAME FROM EMP E,DEPT D WHERE E.DEPTNO = D.DEPTNO AND E.ENAME LIKE '%A%';
+
+--사원이름과 그 사원이 속한 부서의 부서명, 그리고 월급을 출력하는데 월급이 3000이상인 사원출력
+SELECT E.ENAME, D.DNAME, E.SAL FROM EMP E, DEPT D WHERE E.DEPTNO = D.DEPTNO AND E.SAL >= 3000;
+
+--커미션이 책정된 사원들의 사원번호, 이름, 연봉, 연봉+커미션, 급여등급을 출력하되, 
+--각 컬럼명을 사원번호, 사원이름, 실급여, 급여등급으로 하여 출력
+SELECT E.EMPNO AS 사원번호, 
+       E.ENAME AS 사원이름, 
+       E.SAL*12 AS 연봉, 
+       (E.SAL*12)+E.COMM AS 실급여, 
+       S.GRADE AS 급여등급 
+ FROM EMP E,SALGRADE S 
+WHERE E.SAL BETWEEN S.LOSAL AND S.HISAL 
+  AND E.COMM > 0;
+
+
+
+
+1.내장객체의 영역 page, request, session, application 에 대하여 설명하시오.
+
+page영역	: 하나의 JSP 페이지 내에서 속하는 영역으로, 
+	  하나의 JSP페이지 안에서만 공유할 값을 저장됩니다.
+
+request : 한 번의 요청에 대한 정보가 저장되는 영역입니다. 
+	웹 브라우저가 요청을 보낼 때마다 새로운 request영역이 되고 
+	request 객체를 이용하여 모든 JSP페이지에서 접근 가능합니다.
+
+session : 한 명의 사용자와 관련된 정보가 저장되는 영역입니다. 
+	사용자가 이용하는 웹 브라우저 하나 당 영역이 존재하기 때문에 주로 로그인 정보를 저장합니다.
+
+application : 모든 사용자가 이용할 수 있는 정보를 저장하는 영역입니다. 
+	    하나의 웹 어플리케이션에 대한 요청, 세션 등과 같은 모든 정보는 aplication 영역에 속합니다. 
+	    주로 웹 어플리케이션의 설정 정보를 저장합니다.
+
+
+
+
+2. emp 의 모든 데이터를 나타내시오.단 Datasource를 활용할것.
+
+<DTO>
+
+package jsp_test;
+
+public class EmpDTO {
+	private String empno;
+	private String ename;
+	private String job;
+	private String mgr;
+	private String hiredate;
+	private String sal;
+	private String comm;
+	private String deptno;
+	
+	public void empDTO() {}
+	
+	/**
+	 * @param empno
+	 * @param ename
+	 * @param job
+	 * @param mgr
+	 * @param hiredate
+	 * @param sal
+	 * @param comm
+	 * @param deptno
+	 */
+	public EmpDTO(String empno, String ename, String job, String mgr, String hiredate, String sal, String comm,
+			String deptno) {
+		super();
+		this.empno = empno;
+		this.ename = ename;
+		this.job = job;
+		this.mgr = mgr;
+		this.hiredate = hiredate;
+		this.sal = sal;
+		this.comm = comm;
+		this.deptno = deptno;
+	}
+	public String getEmpno() {
+		return empno;
+	}
+	public void setEmpno(String empno) {
+		this.empno = empno;
+	}
+	public String getEname() {
+		return ename;
+	}
+	public void setEname(String ename) {
+		this.ename = ename;
+	}
+	public String getJob() {
+		return job;
+	}
+	public void setJob(String job) {
+		this.job = job;
+	}
+	public String getMgr() {
+		return mgr;
+	}
+	public void setMgr(String mgr) {
+		this.mgr = mgr;
+	}
+	public String getHiredate() {
+		return hiredate;
+	}
+	public void setHiredate(String hiredate) {
+		this.hiredate = hiredate;
+	}
+	public String getSal() {
+		return sal;
+	}
+	public void setSal(String sal) {
+		this.sal = sal;
+	}
+	public String getComm() {
+		return comm;
+	}
+	public void setComm(String comm) {
+		this.comm = comm;
+	}
+	public String getDeptno() {
+		return deptno;
+	}
+	public void setDeptno(String deptno) {
+		this.deptno = deptno;
+	}
+}
+
+<DAO>
+
+package jsp_test2;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
+import jsp_test.EmpDTO;
+
+public class EmpDAO {
+	
+	private DataSource dataSource;
+	
+	public EmpDAO() {
+		
+		try {
+			Context context = new InitialContext();
+			dataSource = (DataSource)context.lookup("java:comp/env/jdbc/oracle");
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public ArrayList<EmpDTO> empSelect(){
+		ArrayList<EmpDTO> emps = new ArrayList<EmpDTO>();
+		
+		Connection con = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		String sql = "select * from emp";
+		
+		try {
+			
+			con = dataSource.getConnection();
+			stmt = con.createStatement();
+			rs = stmt.executeQuery(sql);
+			
+			while(rs.next()) {
+				
+				String empno = rs.getString("empno");
+				String ename = rs.getString("ename");
+				String job = rs.getString("job");
+				String mgr = rs.getString("mgr");
+				String hiredate = rs.getString("hiredate");
+				String sal = rs.getString("sal");
+				String comm = rs.getString("comm");
+				String deptno = rs.getString("deptno");
+				
+				EmpDTO emp = new EmpDTO(empno, ename, job, mgr, hiredate, sal, comm, deptno);
+				emps.add(emp);
+			}
+
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+					if(con != null) con.close();
+		            if(stmt != null) stmt.close();
+		            if(rs != null) rs.close();
+				
+			}catch(Exception e) {}
+		}
+		
+		return emps;
+	}
+	
+	
+	
+}
+
+<출력>
+<%@page import="jsp_test.EmpDTO"%>
+<%@page import="jsp_test2.EmpDAO"%>
+
+<%@page import="java.util.ArrayList"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="EUC-KR">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		
+		<%
+			ArrayList<EmpDTO> emps = new ArrayList<EmpDTO>();
+			EmpDAO empDAO = new EmpDAO();
+			
+			for(int i = 0; i < emps.size(); i++){
+				EmpDTO emp = emps.get(i);
+				
+				String empno = emp.getEmpno();
+				String ename = emp.getEname();
+				String job = emp.getJob();
+				String mgr = emp.getMgr();
+				String hiredate = emp.getHiredate();
+				String sal = emp.getSal();
+				String comm = emp.getComm();
+				String deptno = emp.getDeptno();
+				
+				out.println("사원	번호: " + " " + empno + "이름: " + " " + ename + "직업: " + " " + job + "MGR: " + " " + mgr + "입사날짜: " + " " + hiredate + "월급: " + " " + sal + "COMM : " + " " + comm + "부서번호: " + " " + deptno + "<br />");
+			}
+			
+		%>
+		
+		
+		
+	</body>
+</html>
+
+
+3. EL 에 대하여 설명하시오.
+
+${ 조건 } 으로 나타냄 
+True, false , 숫자 , 문자, 비교 가능
+
+
+4.JSTL 에 대하여 설명하시오.
+
+- JSTL은 태그를 통해 JSP 코드를 관리하는 라이브러리로서, JSP의 가독성이 좋아집니다.
+
+
+5.아래의 조인에 대하여 설명하시오.
+-equi join : 조인 대상이 되는 두 테이블에서 공통적으로 존재하는 컬럼의 값이 일치되는 행을 연결하여 결과를 생성하는 조인 기법이다.
+ex) SELECT ENAME,DNAME FROM EMP E ,DEPT D WHERE E.DEPTNO = D.DEPTNO;
+
+-self join : 자기 자신과 조인을 하는 기법이다.
+ex) SELECT EMPLOYEE.ENAME||'의 매니저는 '|| MANAGER.ENAME||'입니다.' FROM EMP EMPLOYEE, EMP MANAGER WHERE EMPLOYEE.MGR = MANAGER.EMPNO;
+
+-outer join : 2개 이상의 테이블이 조인될 때, 어느 한쪽의 테이블에는 해당하는 데이터가 존재하는데 
+	    다른 쪽 테이블에는 데이터가 존재하지 않는 경우 그 데이터가 출력되지 않는 문제를 해결하기 위해서 사용되는 조인기법이다.
+ex) SELECT EMP.ENAME, DEPT.DNAME FROM EMP,DEPT WHERE EMP.DEPTNO = DEPT.DEPTNO(+);
+=========================
+
+
+
+6.EMP 테이블에서 부서 인원이 4명보다 많은 부서의 부서번호, 인원수, 급여의 합 출력
+
+SELECT DEPTNO 부서번호 , COUNT(*) 인원수, SUM(SAL) 급여의합 FROM EMP GROUP BY DEPTNO HAVING COUNT(*) > 4;
+
+
+
+7.각 사원별 커미션이 0 또는 NULL이고 부서위치가 'GO'로 끝나는 사원의 정보를 
+-- 사원번호, 사원이름, 커미션, 부섭너호, 부서명, 부서위치 출력
+-- 단, 보너스가 NULL이면 0으로 출력
+
+SELECT E.EMPNO 사원번호, E.ENAME 사원이름, NVL(E.COMM,0) 커미션, D.DEPTNO 부서번호, D.DNAME 부서명, D.LOC 부서위치 
+FROM EMP E, DEPT D WHERE E.DEPTNO = D.DEPTNO AND D.LOC LIKE '%GO' AND (E.COMM = 0 OR COMM IS NULL);
+
+
+8.1981년 6월 1일~1981년 12월 31일 입사자 중 부서명이 SALES인 사원의 부서번호, 사원명,
+-- 직업, 입사일을 출력 (단, 입사일 오름차순 정렬)
+
+SELECT D.DEPTNO 부서번호, E.ENAME 사원명, E.JOB 직업, E.HIREDATE 입사일 FROM EMP E, DEPT D 
+WHERE E.DEPTNO = D.DEPTNO AND D.DNAME = 'SALES' AND E.HIREDATE BETWEEN '81/06/01' AND '81/12/31'
+ORDER BY E.HIREDATE ASC;
+
+
+
