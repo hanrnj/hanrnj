@@ -278,7 +278,7 @@ public class EmpDAO {
 	<body>
 		
 		<%
-			ArrayList<EmpDTO> emps = new ArrayList<EmpDTO>();
+			ArrayList<EmpDTO> emps = EmpDAO.empSelect();
 			EmpDAO empDAO = new EmpDAO();
 			
 			for(int i = 0; i < emps.size(); i++){
