@@ -1,0 +1,53 @@
+프레임워크 : 특정한 목적에 맞게 프로그래밍을 쉽게 하기 위한 라이브러리(.class)의 모임 
+
+javascript의 함수 호출 주체는 웹 브라우저!
+
+javascript의 자료형 : 문자, 숫자, 불리언, 함수, 객체, undefined
+
+
+
+
+1.비지니스 로직이란 무엇인가?
+고객이 원하는 프로그램에 대해 원하는 것이 무엇인지 파악하고 이를 전체적으로 로직화 하는 것을 말한다
+
+
+2.ejb 와 spring 의 차이는?(간략하게 정리해 볼것)
+spring은 객체 생성을 담당하는 Factory이고
+EJB는 분산 처리를 위한 Bean이다.
+
+
+3.javascript 의 데이타 타입 종류는?
+문자, 숫자, 불리언, 함수, 객체, undefined
+
+
+4.인터프리터 언어와 컴파일 언어의 차이점은?
+인터프리터 언어 : 코드를 한줄 한줄 읽어가며 명령을 처리하는 프로그램 (컴파일x)
+컴파일 언어: 명령들을 모두 모아놓고 한번에 실행하는 방식 (컴파일 o)
+
+
+==============================
+5)직업이 Clerk 또는 Analyst 이면서 급여가 1000,3000,5000 이 아닌
+ 모든 사원의 이름, 직업 및 급여를 출력하라.
+
+select ename,job,sal from emp where job in('CLERK','ANALYST') and sal not in(1000, 3000, 5000);
+
+6)부서별로 부서이름, 부서위치, 사원 수 및 평균 급여를 출력하라.
+ 그리고 각각의 컬럼명을 부서명,위치,사원의 수,평균급여로 표시하라
+
+select dname as 부서명, loc as 위치, count(*) as 사원의수, avg(sal) as 평균급여
+from emp e, dept d where e.deptno = d.deptno 
+group by e.deptno, d.dname, d.loc;
+
+
+7)Smith와 동일한 부서에 속한 모든 사원의 이름 및 입사일을 출력하라.
+ 단, Smith는 제외하고 출력하시오
+
+select ename, to_char(hiredate, 'yyyy-mm-dd') 
+from emp 
+where deptno in(select deptno from emp where ename = 'SMITH')
+and ename != 'SMITH';
+
+8) KING에게 보고하는 모든 사원의 이름과 급여를 출력하라.
+
+select ename,sal from emp where mgr = (select empno from emp where ename='KING');
+
