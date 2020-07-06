@@ -1,0 +1,98 @@
+Maven = build tool 컴파일부터 배포까지(일련의 과정,빌드) 도와주는 도구
+build tool의 종류 3가지 
+Gradle(안드로이드) , Maven(웹) , Ant
+
+1.프로젝트 clean
+2.Maven 폴더에 project update
+3.
+
+DI사용의 따른 장점 : 다형성
+
+
+
+1.빌드 툴이란 무엇이며, 종류는?
+
+Maven = build tool 컴파일부터 배포까지(일련의 과정,빌드) 도와주는 도구
+build tool의 종류 3가지 
+Gradle(안드로이드) , Maven(웹) , Ant
+
+
+2.메이븐에 대하여 설명하시오.
+
+Maven = build tool 컴파일부터 배포까지(일련의 과정,빌드) 도와주는 도구
+Maven은 자바 프로젝트의 빌드(build)를 자동화 해주는 빌드 툴(build tool)이다.
+즉, 자바 소스를 compile하고 package해서 deploy하는 일을 자동화 해주는 것이다.
+
+
+3.pom.xml 에 대하여 설명하시오.
+
+pom.xml은 POM(Project Object Model)을 설정하는 부분으로 프로젝트 내 빌드 옵션을 설정하는 부분이다.
+
+
+
+4.bean 의 생명주기에 대하여 설명하고 또한 아래의 @에 대하여 설명하시오.
+
+@PostConstruct, @PreDestroy
+
+객체 생성 - 초기화 - 사용 - 소멸 순으로 유지된다.
+
+@PostConstruct
+- 객체의 초기화 부분
+- 객체가 생성된 후 별도의 초기화 작업을 위해 실행하는 메소드를 선언한다.
+- @PostConstruct 어노테이션을 설정해놓은 init 메소드는 WAS가 띄워질 때 실행된다.
+
+@PreDestroy
+- 마지막 소멸 단계
+- 스프링 컨테이너에서 객체(빈)를 제거하기 전에 해야할 작업이 있다면 메소드위에 사용하는 어노테이션.
+- close() 하기 직전에 실행 -> ((AbstractApplicationContext) context).close()
+
+
+5. javascript 로 아래의 프로그램을 만들시오.
+
+이름, 국어, 영어, 수학 점수를 각각 prompt 로 입력받은후,
+수우미양가를 출력한후, 이름 prompt 에 종료가 입력 될때 까지 계속해서 수우미양가를 출력 하도록 하시오.
+ 	
+		while(true){
+ 				
+ 		 	var inputNameString = prompt("이름을 입력하세요", "");		
+ 			if(inputNameString == "종료"){
+ 					alert("종료합니다");
+ 					break;
+ 				} 
+ 				
+ 			
+ 			var inputKorString = prompt("국어점수를 입력하세요", "");
+ 			var inputEngString = prompt("영어점수를 입력하세요", "");
+ 			var inputMathString = prompt("수학점수를 입력하세요", "");
+ 				
+ 			document.write("이름 :" + inputNameString +'<br/>');
+ 			document.write("국어점수 :" + inputKorString +'<br/>');
+ 			document.write("영어점수 :" + inputEngString +'<br/>');
+ 			document.write("수학점수 :" + inputMathString +'<br/>');
+ 			
+ 			var avg = (inputKorString + inputEngString + inputMathString) / 3;
+ 			
+ 			
+ 			if(avg >= 90){
+ 				document.write("평균 : 수" +'<br/>')
+ 			}else if(avg>=80 && avg <90){
+ 				document.write("평균 : 우" +'<br/>')
+ 			}else if(avg>=70 && avg <80){
+ 				document.write("평균 : 미" +'<br/>')
+ 			}else if(avg>=60 && avg <70){
+ 				document.write("평균 : 양" +'<br/>')
+ 			}else {
+ 				document.write("평균 : 가" +'<br/>')
+ 			}
+ 			
+ 			document.write('=============================='+'<br/>');
+	
+ 			} 
+
+
+===============================
+실전 면접
+-동료내지는 상사와 안좋은 일이 있거나 트라블이 생기면 어떻게 하겠는냐?
+
+
+
