@@ -1,0 +1,158 @@
+1.자바스크립트에서 아래를 예를 들어 설명하시오.
+-함수 안에 함수
+
+function funName() {
+			
+ 			return function(x) {
+				for(var i = 1; i < 10; i++){
+					console.log(x + "*" + i + " = " + (x*i));
+				}
+			};	
+		}
+ 		var returnFun = funName();
+			returnFun(4);
+
+-콜백함수
+
+function funName2(funCBF, funCBP, num) {
+			
+ 			for(var i = 1; i <= 10; i++){
+ 				console.log(num + "x" + i + "=" + (num*i));
+ 				if(i < 10) funCBP(i);
+ 			}
+ 			
+ 			funCBF();
+		}
+ 		
+ 		function funCallBackProgress(n) {
+			
+ 			console.log((n*10)+"% 진행완료");
+		}
+ 		
+		function funCallBackFinish() {
+			
+ 			console.log("서버 작업 종료");
+		}
+ 		
+		funName2(funCallBackFinish,funCallBackProgress,7);
+ 		
+ 		var varEval = "console.log(2+2)"
+		eval(varEval);
+
+
+-클로저
+
+function funName1(x) {
+ 		
+			var varName = x + "단";
+			
+			return function() {
+				console.log(varName);
+				for(var i = 1; i < 10; i ++){
+					console.log(x+"x"+i+"="+(i*x));
+				}	
+			}
+		}
+ 		var returnFun = funName1(9);
+		returnFun();
+
+
+
+-함수안에 또다른 함수
+
+function outfun(width,height) {
+			
+			console.log(triangle());
+			console.log(quadrangle());
+			
+			function triangle() {
+				
+				return (width * height) / 2;
+				
+			}
+			
+			function quadrangle() {
+				
+				return width * height;
+				
+			}
+		}
+			
+ 		outfun(3,5);
+
+
+
+2.Environment객체를 이용해서 스프링 빈 설정을 위한 아래의 객체를 설명하시오.
+
+-Context
+어플리케이션의 기초가 되는 Context구성 파일을 생성해준다.
+
+-Environment
+Context가 생성이되면 Environment객체를 얻어올 수 있는 기능이 생성이 되는데 getEnvironment 한다.
+
+-PropertySources
+Environment객체의 getPropertySources메소드를
+사용해서 환경 설정 파일안에 존재하는 설정 파일들에 접근할 수 있다.
+getPropertySources메소드는 환경 설정 파일에 존재하는 모든 설정을 다 불러온다.
+
+
+3.Environment객체를 사용하지 않고 프로퍼티 파일을 직접 이용하여 스프링 빈을 설정하는 방법은?
+
+<context:property-placeholder location="classpath:admin.properties, classpath:sub_admin.properties" />
+
+
+
+4.아래와 같이 원의 넓이를 구하는 프로그램을 자바스크립트로 작성하시오.
+입력은 prompt 로 받으시오.
+
+원의 반지름을 입력하세요 : 10
+원의 넓이는 314 입니다.
+계속 하시겠습니까 yes면 y No이면 n: y
+원의 반지름을 입력하세요 : 10
+원의 넓이는 314 입니다.
+계속 하시겠습니까 yes면 y No이면 n: n
+프로그램을 종료 합니다.
+
+
+		while(true){
+			
+			var radius = prompt("원의 반지름을 입력하세요","");
+			var circleArea = radius*radius*3.14;
+			alert("원의 넓이는" + circleArea + "입니다");
+		
+			var replay = prompt("계속 하시겠습니까 yes면 y No이면 n","");
+		
+		if(replay != null){
+			if(replay == "y" || replay == "Y"){
+				continue;
+			} else if(replay == "n" || replay == "N"){
+				var closed = alert("프로그램을 종료합니다");		
+				}
+			}
+			break;
+		}
+
+
+
+5. 아래의 내장 함수에 대하여 설명하시오.
+
+-eval()
+var varEval = "console.log(2+2)"
+eval(varEval);
+eval안에있는 string을 실행시키는 함수
+
+-setTimeout()
+setTimeout(function() { // Code here }, delay);
+setTimeout() 함수의 내부에 위치한 코드 function() { // Code here }는 콜백함수로 지연시간 뒤에 실행될 코드를 설정합니다.
+
+-setInterval()
+setInterval(function() { ... }, 지연시간);
+
+playAlert = setInterval(function() {
+   alert('http://webisfree.com');
+}, 3000);
+
+5초의 시간 간격으로 계속해서 경고창을 띄우는 함수
+
+
+
