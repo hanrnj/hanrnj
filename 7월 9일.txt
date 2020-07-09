@@ -1,0 +1,285 @@
+Spring MVC프로젝트 생성
+1. maven(bulid tool 컴파일부터 배포까지) -> pom.xml(라이브러리 관리, maven repository에서 라이브러리를 다운 받는다)
+-> web.xml(톰켓WAS,서버구동을위한 설정)
+
+web.xml
+
+<servlet>
+	<servlet-name>appServlet</servlet-name>
+	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+</servlet>
+=======> DispatcherServlet객체 생성 후 context.xml을 같이 생성한다.
+
+
+	<servlet-mapping>
+		<servlet-name>appServlet</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+=======> /로 치고 들어오는 모든 정보를 받아낸다.
+
+
+<annotation-driven /> 
+==========> Controller가 사용하는 수많은 객체들 생성(HandlerMapping,HandlerAdapter,ViewResolver)
+
+<resources mapping="/resources/**" location="/resources/" />
+=====>정적인 리소스를 처리하기위한 문구(heml,css,javascript)
+
+<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+
+=========> ViewResolver객체 생성,동적리소스를 매핑하는 소스
+bean을 이용하려면 ioc컨테이너(스프링)을 만들어야하기때문에 눈에는 안보이지만
+AbstractXmlApplicationContext ctx = new AbstractXmlApplicationContext(); 와 같은 스프링 컨테이너가 생성된다.
+
+<context:component-scan base-package="edu.bit.ex" />
+=====>edu.bit.ex패키지 안에있는 클래스 스캔 @component(부모) ---> { controller(자식), service(자식), repository(자식) }
+
+
+@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String home(Locale locale, Model model){}
+
+======> /로 받게되면 home함수 실행
+
+return "home";
+====>home을 리턴하면 ViewResolver객체가 home.jsp로 만들어서 실행시켜준다.
+
+
+public void board(){}
+===>return값이없어도 함수명에 .jsp를 붙여서 리턴한다.
+
+
+
+1.스프링 mvc 란 무엇인가?
+
+MVC(Model View Controller)’란 비즈니스 규칙은 표현하는 도메인 모델(Model)과 프레젠테이션을 표현하는
+View를 분리하기 위하여 양측 사이에 컨트롤러를 배치하도록 설계한 디자인 패턴이다.
+
+‘스프링 MVC ’ 란 스프링이 제공하는 웹 어플리케이션 구축 전용의 MVC 프레임워크이다. 
+스프링 MVC를 이용함으로써 웹 어플리케이션의 Model, View, Controller 사이의 의존 관계를 
+DI 컨테이너에서 관리하고 통일된 유연한 웹 어플리케이션을 구축할 수 있다.
+
+
+2.아래를 설명하시오.
+
+-pom.xml : 라이브러리 관리, maven repository에서 라이브러리를 다운 받는다
+
+-web.xml : 톰켓WAS,서버구동을위한 설정
+
+-servlet-context.xml : servlet에서 보듯이 요청과 관련된 객체를 정의합니다.
+url과 관련된 controller나, @(어노테이션), ViewResolver, Interceptor, MultipartResolver 등의 설정을 해줍니다
+@component(부모) ---> { controller(자식), service(자식), repository(자식) }
+
+
+3.스프링의 아래의 객체에 대하여 설명하고, 해당 스프링의 실행 순서는?
+
+순서 : dispacherservlet  => HandlerMapping  => HandlerAdapter  => Controller => ViewResolver => dispacherservlet => 클라이언트
+
+-dispacherservlet :  클라이언트의 요청을 전달받아 요청에 맞는 컨트롤러가 리턴한 결과값을 View에 전달하여 알맞은 응답을 생성
+-HandlerMapping : 클라이언트의 요청 URL을 어떤 컨트롤러가 처리할지 결정 
+-HandlerAdapter : 매핑한 url을 controller에게 전달한다.
+-Controller : 클라이언트의 요청을 처리한 뒤, 결과를 DispatcherServlet에게 리턴
+-ViewResolver :  컨트롤러의 처리 결과를 생성할 뷰를 결정(.jsp를 붙인다)
+
+
+4.jsp로 spring을 짜 보시오.
+ 
+
+<Dispacherservlet>
+
+package edu.bit.ex;
+
+import java.io.IOException;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/")
+public class Dispacherservlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+	private HandlerMapping handlerMapping;
+	private ViewResolver viewResolver;
+	
+	
+    public Dispacherservlet() {
+        super();
+       
+    }
+    
+    @Override
+    public void init() throws ServletException{
+    	handlerMapping = new HandlerMapping();
+    	viewResolver = new ViewResolver();
+    	viewResolver.setprefix("./");
+    	viewResolver.setsuffix(".jsp");
+    }
+    
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		process(request, response);
+	}
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		process(request, response);
+	}
+
+	private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String uri = request.getRequestURI();
+		String path = uri.substring(uri.lastIndexOf("/"));
+		
+		System.out.println(uri);
+		System.out.println(path);
+		
+		Controller ctrl = handlerMapping.getController(path);
+		
+		String viewName = ctrl.handleRequest(request, response);
+		
+		String view = null;
+		if(!viewName.contains(".do")) {
+			view = viewResolver.getview(viewName);
+		} else {
+			view = viewName;
+		}
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
+		try {
+			dispatcher.forward(request, response);
+		}catch(ServletException e) {
+			e.printStackTrace();
+		}			
+	}	
+}
+
+
+
+<Controller>
+
+package edu.bit.ex;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public interface Controller {
+	String handleRequest(HttpServletRequest request, HttpServletResponse response);
+}
+
+
+
+<HandlerMapping>
+
+package edu.bit.ex;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class HandlerMapping {
+	private Map<String, Controller> mappings;
+	
+	public HandlerMapping() {
+		mappings = new HashMap<String,Controller>();
+		
+		mappings.put("/", new HelloController());
+		mappings.put("/hello", new HelloController());
+	}
+	public Controller getController(String path) {
+		return mappings.get(path);
+	}
+	
+}
+
+
+<ViewResolver>
+
+package edu.bit.ex;
+
+public class ViewResolver {
+	public String prefix;
+	public String suffix;
+	
+	public void setprefix(String prefix) {
+		this.prefix = prefix;
+	}
+	
+	public void setsuffix(String suffix) {
+		this.suffix = suffix;
+	}
+	
+	public String getview(String viewName) {
+		return prefix + viewName + suffix;
+	}
+	
+}
+
+
+
+<HelloController>
+
+package edu.bit.ex;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class HelloController implements Controller{
+
+	@Override
+	public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("HelloController 실행");
+		return "hello";
+	}
+	
+}
+
+
+<hello.jsp>
+
+
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+	Hello World
+</body>
+</html>
+
+
+5. 아래의 javascript 함수를 만드시오.
+
+var sorento = createCar("SORENTO", "GREY", 220);
+			console.log("sorento.name : " + sorento.name);
+			console.log("sorento.run : " + sorento.run());
+
+		
+		function createCar(name,color,speed) {
+			
+			var objCar = {
+				
+				name : name,
+				color : color,
+				speed : speed,
+				run : function() {
+					return this.speed;
+				}				
+			}
+			return objCar;	
+		}
+
+
+
