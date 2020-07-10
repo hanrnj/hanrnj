@@ -1,0 +1,217 @@
+jsp/sevelt --> request 객체에 setAttribute를 통해서 key,value형태로 값을 전달했다. 
+spring --> Model 객체에 addAttribute
+
+HttpServletRequest 클래스
+jsp/servlet안에있는 내장객체이고, 클라이언트가 request하면  http프로토콜을 통해서 들어오는 요청을 받아내서 캡슐화하는 객체입니다.
+따라서 정보가 캡슐화 되어서 저장되어 있기때문에 .getparmeter을 통해서 정보를 출력할 수 있게됩니다.
+
+커멘드객체 생성시 제약조건 
+@RequestMapping("board/checkCommand")
+	public String checkCommand(Member member) {
+		
+		return "board/confirmId";
+	}
+
+1. 디폴트생성자 생성.
+2. url에 들어가는 /board/checkCommand?id=abcd&pw=12345 데이터 속성이 클래스의 데이터 변수명과 같아야한다.
+
+
+
+1.Model 객체에 대하여 설명하시오.
+
+request 를 통해서 들어온 데이터를 jsp/sevelt에서는 request 객체에 setAttribute를 통해서 key,value형태로 값을 전달했다. 
+하지만 spring 에서는 Model 객체에 addAttribute를 통해서 값을 전달한다.
+
+
+2.ModelAndView 객체의 사용법은?
+
+	@RequestMapping("/board/content") 
+	public ModelAndView content() { 
+
+	// 데이터와 뷰를 동시에 설정이 가능 
+	ModelAndView mv = new ModelAndView(); 
+
+	mv.setViewName("/board/content"); // 뷰의 이름 
+
+	mv.addObject("data", "12341234"); // 뷰로 보낼 데이터 값 
+
+	return mv; 
+}
+
+
+3.아래를 @을 설명하시오.
+-@RequestParam
+
+	  @RequestMapping("board/checkId") 
+	  public String checkId(@RequestParam("id") String id, @RequestParam("pw") int pw, Model model) {
+	  
+	  model.addAttribute("id",id); model.addAttribute("pw",pw);
+	  
+	  return "board/checkId"; 
+	  }
+
+
+
+
+4.req.getParameter 보다 @RequestParam 의 장점은?
+2개 이상의 타입을 정할 수있다는 장점이있고, 스프링에서 지원하는 변환기에서 지원되는 모든 타입을 변환가능하다.
+
+
+
+
+5.command 객체란?
+ - 유의할점 2가지는?
+
+@RequestMapping("board/checkCommand")
+	public String checkCommand(Member member) {
+		
+		return "board/confirmId";
+	}
+<command 객체란>
+@RequestParam 을 통해서 들어오는 각 속성들이 많아지면 커맨드 객체(Command Object)를 지원하여 
+HTTP에서 들어오는 각 속성값들을 자동적으로 커맨드 객체에 바인딩하여 처리할 수 있게 하였다.
+
+<유의할점2가지>
+1. 디폴트생성자 생성.
+2. url에 들어가는 /board/checkCommand?id=abcd&pw=12345 데이터 속성이 클래스의 데이터 변수명과 같아야한다.
+
+
+
+
+6.HttpServletRequest 객체를 설명하시오.
+
+jsp/servlet안에있는 내장객체이고, 클라이언트가 request하면  http프로토콜을 통해서 들어오는 요청을 받아내서 캡슐화하는 객체입니다.
+따라서 정보가 캡슐화 되어서 저장되어 있기때문에 .getparmeter을 통해서 정보를 출력할 수 있게됩니다.
+
+
+
+7.정보은닉이란?
+함수에 들어있는 데이터를 접근하기위해서 getter,setter 메소드를 만들고, 다른 함수를 통해서 접근하도록 하는것을 말합니다.
+
+
+8.아래를 프로그래밍 하시오.
+-프로토타입으로 함수를 만들것
+
+			function Scoring(player,FirstNum,secondNum,thithNum){
+				
+				this.player = player;
+				this.FirstNum = FirstNum;
+				this.secondNum = secondNum;
+				this.thithNum = thithNum;
+			}
+		
+			Scoring.prototype.getTotal = function(){
+				return this.FirstNum + this.secondNum + this.thithNum ;
+			}
+	
+			Scoring.prototype.getAverage = function(){
+				return (this.FirstNum + this.secondNum + this.thithNum / 3);
+			}
+
+
+			var player1 = new Scoring("홍길동", 99, 90, 92);
+			console.log(player1.player + "의 총점 : " + player1.getTotal());
+			console.log(player1.player + "의 평균 : " + player1.getAverage());
+			
+			var player2 = new Scoring("홍길순", 80, 90, 85);
+			console.log(player2.player + "의 총점 : " + player2.getTotal());
+			console.log(player2.player + "의 평균 : " + player2.getAverage());
+
+
+
+
+
+9.아래를 스프링 mvc로 프로그래밍 하시오.
+이름 국어 영어 수학 을 입력 하는 페이지를 만든후, 이름과 총점 평균을 클라이언트에게 보내줄것
+1)조건 - command 객체 사용 할것
+2)롬복이 사용 할것.
+
+<command객체>
+package edu.bit.ex;
+
+import lombok.Data;
+
+@Data
+public class Grade {
+	
+	private String name;
+	private int kor;
+	private int eng;
+	private int math;
+	
+	public int getAvg() {
+		return (kor + eng + math)/3 ;
+	}
+	
+}
+
+
+<controller>
+package edu.bit.ex;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+
+@Controller
+public class HomeController {
+	
+	@RequestMapping("/gradeInput")
+	public String gradeInput() {
+		
+		return "gradeInput";
+	}
+	
+	
+	@RequestMapping("/gradeInfo")
+	public String gradeInfo(Grade grade) {
+		
+		return "gradeInfo";
+	}
+	
+}
+
+
+<view페이지>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page session="false" %>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<html>
+<head>
+	<title>Home</title>
+</head>
+<body>
+
+	이름 : ${grade.name} <br/>
+	영어 : ${grade.eng} <br/>
+	국어 : ${grade.kor}	<br/>
+	수학 : ${grade.math} <br/>
+	평균 : ${grade.getAvg()}
+	
+</body>
+</html>
+
+
+<입력페이지>
+
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+		<form action="gradeInfo" method="post" >
+		이름:<input type = "text" name = "name"><br/>
+		영어:<input type = "text" name = "eng"><br/>
+		수학:<input type = "text" name = "math"><br/>
+		국어:<input type = "text" name = "kor"><br/>
+		<input type = "submit" value = "제출">
+</body>
+</html>
+
+
