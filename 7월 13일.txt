@@ -1,0 +1,92 @@
+restful : @pathVariable을 통해서 url로 파라미터를 전달하는 것 "/student/{student}"
+
+절대경로 : 가장 최상의 경로부터 적는것 /~~/  --> http://loclahost:8282/
+상대경로 : ../~~  --> ../context명/studentView/ ..이 앞에있는 상대경로랑 합쳐져서 지워짐 
+
+${pageContext.request.contextPath} 실무에서 context 입력방법
+
+<a href = "studentView" target="_blank">태그<a/> 절대경로,상대경로 디버깅방법
+
+form태그가 있는 jsp파일을 url을 통해서 접속을하면 서버에서 jsp 파일을 html로 변경해서 웹브라우저에 
+띄우고 서버와 연결을 끊어버린다. 서버와의 연결이 끊어진 form태그는 action 태그를 통해서 form태그에 입력된
+정보를 전달해야하는데 WAS가 default값으로 http://Loclahost:8282/ -> 까지는 입력을 해주는데 html파일이 서버에있는
+프로젝트를 찾아가기 위해서는 프로젝트명=context명을 알아야하기때문에 action태그에 "<%=context%>/studentView"
+이렇게 입력을 해줘야 그 프로젝트를 찾아갈 수 있게됩니다. "/studentView" 이렇게 입력을 하게되면 절대 경로로 입력이
+되어서 http://Loclahost:8282/studentView가 되어서 studentView가 있는 프로젝트를 찾아갈 수 없어서 에러가 발생하고,
+"../context명/studentView" 이렇게 상대경로로 입력을 하게되면 http://Loclahost:8282/context명 .. /context명/studentView 
+이렇게 입력이 되는데 ..이 앞에있는 경로랑 합쳐지게되어서 http://Loclahost:8282/context명/studentView  이렇게 경로설정이 됩니다.
+
+
+
+1.Restful 이란?
+get, post방식이 아니라 url을 통해서 파라미터를 전달하는것
+
+
+2.@PathVariable의 사용 법은?
+
+@RequestMapping("/student/{studentId}")
+	public String getStudent(@PathVariable String studentId, Model model) {
+		
+		model.addAttribute("studentId" , studentId);
+		
+		return "student/studentView";
+	}
+
+http://localhodt:8282/context명/student/10
+
+
+3.절대 경로와 상대 경로에 대하여 설명하시오.
+
+절대경로 : 가장 최상의 경로부터 적는것 /~~/  --> http://loclahost:8282/context명/파일명
+상대경로 : ../~~  --> ../context명/studentView/ ../은 상위폴더 ./은 현재폴더
+./student = student
+../context명/student = http://loclahost:8282/context명/student 
+
+
+
+4.아래의 href의 주소를 정확하게 기술 하시오.
+
+<a href="studentView" target="_blank">태그</a><br>
+==>http://loclahost:8282/spring_14_2_ex1_srpingex/studentView/studentView
+
+<a href="/studentView" target="_blank">태그</a><br>
+http://loclahost:8282/studentView
+
+<a href="../spring_14_2_ex1_srpingex/studentView" target="_blank">태그</a><br>
+http://loclahost:8282/spring_14_2_ex1_srpingex/studentView/studentView
+
+
+
+5. 아래의 액션 태그의 차이는 무엇인가요?
+
+<form action="studentView" method="post">
+==> http://loclahost:8282/context명/studentView
+
+<form action="/studentView" method="post">
+==> http://loclahost:8282/studentView
+
+
+6.javascript로 시간을 표시하는 웹페이지를 만드시오.
+-document.write을 활용하시오.
+-시간 가운데 정렬 시킬것.
+
+function getNowDate() {
+				var nowDate = new Date();
+				var dayArr = new Array('일', '월', '화', '수', '목', '금', '토');
+				var print = ""; 
+					print += nowDate.getFullYear() + "년 ";
+					print += (nowDate.getMonth() + 1) + "월 ";
+					print += nowDate.getDate() + "일 ";
+					print += dayArr[nowDate.getDay()]+ "요일 ";
+					print += nowDate.getHours()+ "시 ";
+					print += nowDate.getMinutes()+ "분 ";
+					print += nowDate.getSeconds()+ "초 ";
+				
+				return print;
+			}	
+	
+			document.write(getNowDate());
+			
+			getNowDate().style.text-align:center
+
+
