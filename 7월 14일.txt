@@ -1,0 +1,178 @@
+유효성 검사 = 클라이언트쪽에서 javascript를 이용한 방법 , vaildator 인터페이스를 이용하여 서버쪽에서 검사하는 방법
+
+JUNIT 자바 테스팅 프레임워크 , 단위테스트 도구 입니다.
+TDD = Test Driven Development 
+단위테스트 = 함수 테스트
+
+
+1.Validator 객체 사용법은?
+
+@RequestMapping("/student/create")
+	public String studentCreate(Student student, BindingResult result) {
+		
+	    String page = "createDonePage";
+
+	    StudentValidator validator = new StudentValidator();
+	    validator.validate(student, result);
+	    if (result.hasErrors()) {
+	      page = "createPage";
+	    }
+		
+		return page;
+	}
+
+
+public class StudentValidator implements Validator {
+
+  @Override
+  public boolean supports(Class<?> arg0) {
+    return Student.class.isAssignableFrom(arg0); 
+  }
+
+  @Override
+  public void validate(Object obj, Errors errors) {
+    System.out.println("validate()");
+    Student student = (Student) obj;
+
+    String studentName = student.getName();
+    if (studentName == null || studentName.trim().isEmpty()) {
+      System.out.println("studentName is null or empty");
+      errors.rejectValue("name", "trouble");
+    }
+
+    int studentId = student.getId();
+    if (studentId == 0) {
+      System.out.println("studentId is 0");
+      errors.rejectValue("id", "trouble");
+    }
+  }
+}
+
+student와 result가 각각 Object target, Errors error의 자손이 된다.
+createPage에서 입력받은 정보를 Student 객체로 정보를 받고, Validator 클래스를 추가로 생성하여 validate(Object obj, Errors errors) 메서드를 사용한다.
+validate(Object obj, Errors errors) 메서드는 입력받은 각각의 정보에 대한 예외 조건을 입력한다.
+해당 조건문에서 trouble로 값이 return 하면,
+if(result.hasErrors()) {
+	page = "createPage";
+}
+를 통해 처음의 페이지로 가고, 예외 조건에 해당하지 않으면 createDonePage로 가서 입력한 정보를 띄운다.
+
+
+
+2.JUNIT 이란?
+JUNIT 자바 테스팅 프레임워크 , 단위테스트 도구 입니다
+
+
+3. 아래의 인터페이스를 구현한 
+삼각형,사각형,원의 클래스를 구현하고,JUNIT를 이용하여 단위 테스트 하시오.
+-interface IShape{
+	-double getArea();
+}
+
+
+<circle>
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@Data
+class Circle implements IShape{
+	private int radius;
+	
+	@Override
+	public double getArea() {
+		// TODO Auto-generated method stub
+		return radius * radius * Math.PI;
+	}
+	
+	public double getArea(int radius) {
+		// TODO Auto-generated method stub
+		return radius * radius * Math.PI;
+	}
+}
+
+<triangle>
+@NoArgsConstructor
+@Data
+class Triangle implements IShape{
+	private int width, height;
+
+	@Override
+	public double getArea() {
+		// TODO Auto-generated method stub
+		return width * height * 0.5;
+	}
+	
+	public double getArea(int width, int height) {
+		// TODO Auto-generated method stub
+		return width * height * 0.5;
+	}
+}
+
+<rectangle>
+@NoArgsConstructor
+@Data
+class Rectangle implements IShape{
+	private int width, height;
+
+	@Override
+	public double getArea() {
+		// TODO Auto-generated method stub
+		return width * height;
+	}
+	
+	public double getArea(int width, int height) {
+		// TODO Auto-generated method stub
+		return width * height;
+	}
+}
+
+<test>
+public class IShapeTest {
+
+	@Test
+	public void testCir() {
+		Circle circle = new Circle();
+		double area = circle.getArea(10);
+		assertEquals(314, area, 0);
+		
+		
+	}
+	
+	@Test
+	public void testTri() {
+		Triangle triangle = new Triangle();
+		double area = triangle.getArea(10, 20);
+		assertEquals(100, area, 0);
+		
+		
+	}
+	
+	@Test
+	public void testRec() {
+		Rectangle rectangle = new Rectangle();
+		double area = rectangle.getArea(10, 20);
+		assertEquals(200, area, 0);
+	}
+	
+
+}
+
+3.BOM 이란 무엇인가?
+자바스크립트가 브라우저의 기능적인 요소들을 직접 제어하고 관리할 방법을 제공해 줍니다.
+
+
+4.window 객체란 무엇인가?
+window 객체는 웹 브라우저의 창(window)을 나타내는 객체로, 대부분의 웹 브라우저에서 지원하고 있습니다.
+
+
+5.아래를 프로그램 하시오.
+- 현재 탭에서 www.google.com 을 여시오.
+
+<script>
+window.open("http://www.google.com", "google", "width=500, height=600");
+</script>
+
+
+
+
