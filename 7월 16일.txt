@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+	<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<style>
+			#wrap {
+				text-align: center;
+			}
+			table {
+				margin: 0 auto;
+				visibility: hidden;
+			}
+			table tr:nth-child(1) {
+				background-color: #B0E0E6;
+			}
+			#blank {
+				height: 20px;
+			}
+			input[type=text] {
+				width: 200px;
+				padding: 12px 20px;
+				margin: 8px 0;
+				box-sizing: border-box;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<div id="wrap">
+			<h2>가위 바위 보 입력</h2>
+			<input type="text" id="txtId"><br>
+			<button onclick="game()">GO</button>
+			<div id="blank"></div>
+			<table id="table" border="1">
+				<tr>
+					<td>사용자</td>
+					<td>컴퓨터</td>
+				</tr>
+				<tr>
+					<td id="uImg"></td>
+					<td id="cImg"></td>
+				</tr>
+				<tr>
+					<td id="result" colspan="2"> </td>
+				</tr>
+				<tr>
+					<td id="info" colspan="2"> </td>
+				</tr>
+			</table>
+		</div>
+		
+		<script type="text/javascript">
+			
+			var count = 0;
+			var winNum = 0;
+			var loseNum = 0;
+			var drawNum = 0;
+	
+			var paperImg = "<img src='P.png'>";
+			var rockImg = "<img src='R.png'>";
+			var scissorsImg = "<img src='S.png'>";
+			
+			var tableNode = document.getElementById("table");
+			var resultNode = document.getElementById("result");
+			var uImgNode = document.getElementById("uImg");
+			var cImgNode = document.getElementById("cImg");
+			var infoNode = document.getElementById("info");
+			var blankNode = document.getElementById("blank");
+			
+			function win() {
+				resultNode.innerHTML = "<h2>WIN</h2>";
+				winNum++;
+			}
+			function lose() {
+				resultNode.innerHTML = "<h2>LOSE</h2>";
+				loseNum++;
+			}
+			function draw() {
+				resultNode.innerHTML = "<h2>DRAW</h2>";
+				drawNum++;
+			}
+			
+			var arr = ["가위", "바위", "보"];
+			
+			function computerNum() {
+				return Math.floor((Math.random()*3));
+			}
+			
+			function game() {
+				
+				tableNode.style.visibility="visible";
+				
+				count++;
+				
+				let error="";
+				blankNode.innerHTML = "";
+				
+				var playerStr = document.getElementById("txtId").value;
+				
+				var plaNum = 3;
+				
+				for(var i=0; i<3; ++i) {
+					if(playerStr==arr[i]) {
+						plaNum = i;
+					}
+				}
+				
+				var comNum = computerNum();
+				
+				console.log("plaNum : "+plaNum);
+				console.log("comNum : "+comNum);
+				console.log("count : "+count)
+				
+				if(count==1&&!(plaNum==0||plaNum==1||plaNum==2)) {
+					
+					tableNode.style.visibility="hidden";
+					var textNode = document.createTextNode("잘못 입력 하셨습니다");
+					var pNode = document.createElement("p");
+					
+					pNode.appendChild(textNode);
+					pNode.style.color = "red";
+					blank.appendChild(pNode);
+				}
+				
+				if(plaNum==0) {
+					uImgNode.innerHTML = scissorsImg;
+					if(comNum==0) {
+						cImgNode.innerHTML = scissorsImg;
+						draw();
+					}else if(comNum==1) {
+						cImgNode.innerHTML = rockImg;
+						lose();
+					}else if(comNum==2) {
+						cImgNode.innerHTML = paperImg;
+						win();
+					}else {
+						console.log("컴퓨터 오류");
+					}
+				}else if(plaNum==1) {
+					uImgNode.innerHTML = rockImg;
+					if(comNum==0) {
+						cImgNode.innerHTML = scissorsImg;
+						win();
+					}else if(comNum==1) {
+						cImgNode.innerHTML = rockImg;
+						draw();
+					}else if(comNum==2) {
+						cImgNode.innerHTML = paperImg;
+						lose();
+					}else {
+						console.log("컴퓨터 오류");
+					}
+				}else if(plaNum==2) {
+					uImgNode.innerHTML = paperImg;
+					if(comNum==0) {
+						cImgNode.innerHTML = scissorsImg;
+						win();
+					}else if(comNum==1) {
+						cImgNode.innerHTML = rockImg;
+						lose();
+					}else if(comNum==2) {
+						cImgNode.innerHTML = paperImg;
+						draw();
+					}else {
+						console.log("컴퓨터 오류");
+					}
+				}else {
+					error="<p style='color: red'>잘못 입력 하셨습니다</p>";
+					console.log("플레이어 오류");
+					count = 0;
+				}
+				
+				var info = "<h4>";
+				info+="승리 : "+winNum+"<br>";
+				info+="패배 : "+loseNum+"<br>";
+				info+="무승부 : "+drawNum+"<br>";
+				info+="승률 : "+(winNum/(winNum+loseNum+drawNum)*100).toFixed(2)+" %</h4>";
+				info+=error;
+				infoNode.innerHTML = info;
+			}
+		</script>
+	</body>	
+</html>
