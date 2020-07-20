@@ -1,0 +1,209 @@
+URL로 들어오는 주소로는 물리적 주소를 맵핑할 수 없다.
+WEB-INF 정보는 유저가 볼 수 없다.
+
+1.정적 리소스의 종류는?
+html,css,js,text,img
+
+2.스프링에서의 정적 리소스 처리 방식은?
+<resources mapping="/resources/**" location="/resources/" />
+
+스프링에서 모든 URL로 치고들어오는 정보는 dispacherServlet이 받도록 셋팅되어 있습니다.
+dispacherServlet로 들어온 url은 controller로 이동해서 model객체를 통해서 DB에서 데이터를 
+꺼내와서 클라이언트한테 전달하는데 정적리소스 처럼 굳이 model 객체를 통해 DB에서 데이터를
+가져 올 필요가 없는경우는 <resources> 맵핑을 통해 따로 관리 하도록 합니다.
+
+
+
+
+3.게시판 버전 2 방식에서 delete 와 contentview를 구현하시오.
+
+
+
+
+
+4.아래를 설명하시오.
+
+              	 @AutoWired                          @Inject                           @Resource
+범용 :        	 스프링 전용                        자바에서 지원                      자바에서 지원
+
+연결방식 :       타입(class)에 맞춰서 연결         타입(class)에 맞춰서 연결             이름(id)으로 연결
+
+
+
+-@Repository
+해당 클래스가 데이터베이스에 접근하는 클래스임을 명시
+
+-@Service 
+Repository를 통해 데이터베이스에서 데이터를 가져온 후 컨트롤러에게 전달해 주는 클래스임을 명시
+
+
+
+5.이벤트란 무엇이며, 이벤트 등록 방법 4가지에 대한 예를 드시오.
+
+<인라인 모델>
+
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>JavaScript</title>
+		
+		<script>
+			function headerClick(){
+				console.log("click!");
+				
+				/*
+				//이벤트 제거
+				var ce = document.getElementById("cEvent");
+				console.log(ce);
+				ce.onclick = null;
+				*/
+			};
+		</script>
+		
+		<style>
+			#cEvent {
+				width: 200px; height: 100px;
+				line-height: 100px;
+				text-align: center;
+				font-size: 1.2em;
+				background-color: #f00;
+				color: #fff;
+				font-weight: bolder;
+			}
+		</style>
+	</head>
+	
+	<body>
+	
+		<!-- <div id="cEvent" onclick="console.log('click!')">click event</div> -->
+		<div id="cEvent" onclick="headerClick();">click event</div>
+	
+	</body>
+
+</html>
+
+<기본 모델>
+
+
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>JavaScript</title>
+		
+		<script>
+			
+			window.onload = function(){
+				
+				var ce = document.getElementById("cEvent");
+				//방법 I
+				ce.onclick = function(){
+					console.log("click!");
+					//이벤트 제거
+					//ce.onclick = null;
+				}
+				
+				/*
+				//방법 II
+				ce.onclick = clickEventHandler;
+				function clickEventHandler(){
+					console.log("clickEventHandler!");
+					//이벤트 제거
+					//ce.onclick = null;
+				}
+				*/
+				
+			};
+			
+			
+			
+		</script>
+		
+		<style>
+			#cEvent {
+				width: 200px; height: 100px;
+				line-height: 100px;
+				text-align: center;
+				font-size: 1.2em;
+				background-color: #f00;
+				color: #fff;
+				font-weight: bolder;
+			}
+		</style>
+	</head>
+	
+	<body>
+	
+		<div id="cEvent">click event</div>
+	
+	</body>
+
+</html>
+
+
+<표준 핸들러 모델>
+
+
+
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>JavaScript</title>
+		
+		<script>
+		
+			window.onload = function() {
+				function addHandler(){
+					console.log("click!!");
+					console.log("this : " + this);
+					
+					this.style.backgroundColor = "#0000ff";
+					
+				};
+			
+				var objD = document.getElementById("objDiv");
+				objD.addEventListener("click", addHandler, false);
+			
+				var objP = document.getElementById("objPar");
+				objP.addEventListener("click", addHandler, false);
+			};
+			
+		</script>
+		
+		<style>
+			#objDiv {
+				width: 200px; height: 100px;
+				line-height: 100px;
+				text-align: center;
+				font-size: 1.2em;
+				background-color: #f00;
+				color: #fff;
+				font-weight: bolder;
+			}
+			
+			#objPar {
+				width: 200px; height: 100px;
+				line-height: 100px;
+				text-align: center;
+				font-size: 1.2em;
+				background-color: #0f0;
+				color: #fff;
+				font-weight: bolder;
+			}
+		</style>
+	</head>
+	
+	<body>
+	
+		<div id="objDiv">Object Division</div>
+		<p id="objPar">Object Paragraph</p>
+	
+	</body>
+
+</html>
+
+
+
+
