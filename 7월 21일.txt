@@ -1,0 +1,156 @@
+            MVC 게시판
+1.Controller,   command ,   DAO
+2.@Controller @Service, @Repository ==> 부모 @Component 
+
+@Component + 의미  
+
+html - 시멘틱 태그
+<article> = <div> + 의미
+<main>
+<nav>
+
+유효성 검사 방법
+validate객체를 implement
+무조건 서버쪽으로 받아낸다. 
+
+
+
+1. 게시판 작성시 아래의 용어 들에 대하여 간략히 정리하시오.
+ -Controller, Command , DAO
+ -@Controller, @Service, @Repository
+
+spring은 servlet-context.xml 에 세팅되어있는 component-scan 을 통해서 edu.bit.board 안에 있는
+모든 패키지의 있는 @component를 객체생성을 통해서 메모리에 올려 주고 있습니다.
+<context:component-scan base-package="edu.bit.board" />
+@component밑에 자식클래스가 있는데 @Controller, @Service, @Repository가 있습니다.
+@Controller를 명시한 클래스는 컨트롤러임을 명시한 클래스이고 
+@Service를 명시한 클래스는 Repository를 통해 데이터베이스에서 데이터를 가져온 후 컨트롤러에게 전달해 주는 클래스임을 명시한 클래스입니다.
+@Repository는 해당 클래스가 데이터베이스에 접근하는 클래스임을 명시한 것 입니다.
+
+
+
+2.@Component의 역할 과 세팅은 어디서 하며, 어떠한 의미인지 설명하시오.
+
+servlet-context.xml 파일에서 세팅
+<context:component-scan base-package="edu.bit.board" />
+
+1. 스프링은 객체를 관리한다.
+
+- 1. 객체 생성 : @Component 어노테이션을 포함한 클래스들의 인스턴스를 자동으로 생성한다.
+
+@Component의 종류
+
+1. @Contoller - @RestController
+2. @Service
+3. @Repository
+
+ ** 3가지 종류의 컴포넌트가 다른 이름을 가진 이유는 레이어를 구분하기 위함
+
+@RestController : @RestController -> @Controller 안으로 들어가면 @Component 어노테이션이 있다. 
+@Component 어노테이션이 붙어 있으면 스프링 Bean Container가 모두 객체를 생성한다(개발자가 직접 new()를 사용하는 것과 같은 역할을 한다.)
+
+
+
+
+3.Command 객체에 대하여 설명하시오.
+
+스프링에서 HttpServletRequest를 통해 HTTP 전송 정보를 얻는 방법은 다음과 같다. 
+@RequestMapping(value="/memLogin", method=RequestMethod.POST)
+public String memLogin(Model model, HttpServletRequest request) {
+    String memId = request.getParameter("memId");
+    String memPw = request.getParameter("memPw");
+}
+
+하지만 이 방법은 속성값을 끄집어내기 위한 boiler-plate 코드가 생길 수 밖에 없는 단점이 있다. 
+따라서 스프링에서는 @RequestParam 어노테이션을 제공하여 메서드의 인수 부분에 
+HTTP로 들어오는 데이터를 바인딩하여 boiler-plate 코드를 어느정도 줄일 수 있게 하였다.
+
+@RequestMapping(value="/memLogin", method=RequestMethod.POST)
+public String memLogin(Model model, 
+        @RequestParam("memId") String memId,
+        @RequestParam("memPw") String memPw) {
+    Member member = service.memberSearch(memId, memPw);
+}
+
+그러나 @RequestParam 어노테이션을 사용하는 방법도 한계가 있다. 
+HTTP에서 들어오는 데이터의 각 속성들이 적으면 @RequestParam으로 커버가 가능하겠지만 
+이것보다 많은 6개 10개 혹은 그 이상의 속성들이 들어오게되면 @RequestParam들을 하나하나 명시해서 처리해야되므로 매우 까다로워진다.
+
+따라서 스프링에서는 커맨드 객체(Command Object)를 지원하여 HTTP에서 
+들어오는 각 속성값들을 자동적으로 커맨드 객체에 바인딩하여 처리할 수 있게 하였다.
+
+
+
+4.아래의 방식으로 게시판을 완성하시오.(댓글 포함)
+ @Controller, @Service, @Repository
+
+
+5. input 박스에서 type=button 과 type=submit
+일때의 차이를 자바 스크립트 예제로 설명하시오.
+
+
+ <type=button 경우>
+
+			window.onload = function(){
+				var sbmBtn = document.getElementById("sbmBtn");
+				sbmBtn.onclick = function() {
+					if(document.getElementById("uId").value == "") {
+						alert("user id blank!!");
+					} else if(document.getElementById("uPw").value == "") {
+						alert("user pw blank!!");
+					} else {
+						alert("login ok!!");
+						document.getElementById("loginForm").submit();
+					}
+				};
+				
+				var resBtn = document.getElementById("resBtn");
+				resBtn.onclick = function() {
+					alert("reset ok!!");
+					document.getElementById("loginForm").reset();
+				};
+				
+			}
+
+		<form id="loginForm" action="http://www.google.com">
+			USER ID : <input id="uId" type="text" name="uId"><br>
+			USER PW : <input id="uPw" type="password" name="upw"><br>
+			<input id="sbmBtn" type="button" value="SUBMIT">
+			<input id="resBtn" type="button" value="RESET">
+		</form>
+
+
+
+<type=submit 경우>
+
+			window.onload = function(){
+				var lf = document.getElementById("loginForm");
+				lf.onsubmit = function() {
+					if(document.getElementById("uId").value == "") {
+						alert("user id blank!!");
+						return false;
+					} else if(document.getElementById("uPw").value == "") {
+						alert("user pw blank!!");
+						return false;
+					} else {
+						alert("login ok!!");
+						return true;
+					}
+				};
+			}
+
+
+		<form id="loginForm" action="http://www.google.com">
+			USER ID : <input id="uId" type="text" name="uId"><br>
+			USER PW : <input id="uPw" type="password" name="upw"><br>
+			<input id="sbmBtn" type="submit" value="SUBMIT">
+			<input id="resBtn" type="reset" value="RESET">
+		</form>
+
+6.javascript 와 jquery 의 차이는?
+
+자바 스크립트는 프로그래밍 언어 인 반면, jQuery는 자바 스크립트 작성을 쉽게 해주는 라이브러리입니다. 
+HTML 페이지에서 DOM을 순회 할 때 특히 유용합니다.
+
+
+
