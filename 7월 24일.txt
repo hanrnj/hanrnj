@@ -1,0 +1,13 @@
+<![CDATA[ ==>xml데이타가 아니다 라는 뜻
+sql쿼리문
+]]>
+
+#{bGroup} mabatis는 VO객체를 넘겨주게되면 getter함수를 내부적으로 호출
+
+@AllArgsConstructor
+스프링 5 부터는 생성자가 있으면 Auto(자동으로 넣어줌)
+
+  
+1.프로젝트를 새로 생성하여, emp 를 list로 뿌리시오.
+2.자바스크립트 디버깅 방법은?
+3.가위바위보 게임을 jquery 함수를 사용하여 완성하시오.
